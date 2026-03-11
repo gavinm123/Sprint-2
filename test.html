@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Affording your studies — prototype (phone)</title>
+  <title>Understanding student finance — prototype (phone)</title>
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/govuk-frontend@5.4.0/dist/govuk/govuk-frontend.min.css">
 
@@ -18,9 +18,6 @@
       --gds-link:#1d70b8;
       --gds-link-hover:#003078;
       --gds-focus:#ffdd00;
-      --gds-green:#00703c;
-      --gds-green-shadow:#002d18;
-      --gds-orange:#f47738;
       --radius: 12px;
       --phoneW: 460px;
       --gds-font: "GDS Transport", arial, sans-serif;
@@ -30,6 +27,7 @@
       background: var(--gds-white);
       color: var(--gds-text);
       font-family: var(--gds-font);
+      margin: 0;
     }
 
     .phone, .phone *{
@@ -112,364 +110,66 @@
       margin-bottom: 20px;
     }
 
-    .govuk-body-s{
-      font-size: 16px;
-      line-height: 1.5;
-      color: var(--gds-secondary);
-      margin-bottom: 16px;
-    }
-
-    .govuk-body-l{
-      font-size: 20px;
-      line-height: 1.5;
-      margin-bottom: 20px;
-    }
-
     .govuk-heading-l{
       margin-bottom: 24px !important;
     }
 
-    .govuk-heading-m{
-      font-size: 24px;
-      margin-top: 28px;
-      margin-bottom: 12px;
-    }
-
-    .govuk-heading-s{
-      font-size: 19px;
+    .journey-list{
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
       margin-top: 24px;
-      margin-bottom: 10px;
     }
 
-    .inset{
-      border-left: 6px solid #b1b4b6;
-      padding: 12px 12px;
-      background: #f8f8f8;
-      margin: 18px 0 24px;
-      border-radius: 6px;
+    .journey-card{
+      display: block;
+      padding: 18px 16px;
+      border: 2px solid var(--gds-border);
+      border-radius: 12px;
+      background: var(--gds-white);
+      text-decoration: none;
       color: var(--gds-text);
-      font-size: 16px;
-      line-height: 1.5;
     }
 
-    .warning{
-      display:flex;
-      gap:12px;
-      align-items:flex-start;
-      padding: 14px 14px;
-      background: #fff4e5;
-      border-left: 6px solid var(--gds-orange);
-      margin: 18px 0 20px;
-      border-radius: 6px;
-      font-size: 16px;
-      line-height: 1.5;
-    }
-
-    .blue-insert-text{
-      display:flex;
-      gap:12px;
-      align-items:flex-start;
-      padding: 14px 14px;
-      background: #f4f8fb;
-      border-left: 6px solid #1d70b8;
-      margin: 18px 0 20px;
-      border-radius: 6px;
-      font-size: 16px;
-      line-height: 1.5;
-    }
-
-    .section-break{
-      border: none;
-      border-top: 1px solid #d8d8d8;
-      margin: 28px 0;
-    }
-
-    .tab-bar{
-      display:flex;
-      gap:8px;
-      flex-wrap:wrap;
-      margin: 16px 0 18px;
-    }
-
-    .tab-btn{
-      appearance:none;
-      border:2px solid var(--gds-border);
-      background: var(--gds-bg);
-      color: var(--gds-text);
-      font-size:16px;
-      font-weight:700;
-      padding:10px 12px;
-      border-radius:999px;
-      cursor:pointer;
-    }
-
-    .tab-btn.active{
-      background: var(--gds-text);
-      color: var(--gds-white);
+    .journey-card:hover{
       border-color: var(--gds-text);
     }
 
-    .tab-panel{
-      display:none;
-    }
-
-    .tab-panel.active{
-      display:block;
-    }
-
-    .cost-card{
-      border: 1px solid #d8d8d8;
-      border-radius: 10px;
-      overflow:hidden;
-      margin-bottom: 18px;
-      background: var(--gds-white);
-    }
-
-    .cost-row{
-      padding: 12px 14px;
-      border-top: 1px solid #e5e5e5;
-    }
-
-    .cost-row:first-child{
-      border-top:none;
-    }
-
-    .cost-label{
-      display:block;
-      font-size:18px;
-      margin-bottom:4px;
-    }
-
-    .cost-value{
-      display:block;
-      font-size:18px;
-      margin-bottom:4px;
-    }
-
-    .cost-note{
-      display:block;
-      font-size:15px;
-      color: var(--gds-secondary);
-      line-height:1.4;
-    }
-
-    .cost-category{
-      background: var(--gds-bg);
-      font-size:13px;
-      font-weight:700;
-      letter-spacing:.04em;
-      text-transform:uppercase;
-      color: var(--gds-secondary);
-    }
-
-    .cost-total{
-      background:#f3f8f6;
-      border-top:2px solid var(--gds-green);
-    }
-
-    .cost-total-2{
-      background:#f6f5fa;
-      border-top:2px solid #54319f;
-    }
-
-    .cost-total-value{
-      display:block;
-      font-weight: 700;
-      font-size:18px;
-      margin-bottom:4px;
-    }
-
-    .support-list{
-      display:flex;
-      flex-direction:column;
-      gap:14px;
-      margin-bottom: 8px;
-    }
-
-    .support-card{
-      border: 2px solid #e5e5e5;
-      border-radius: 10px;
-      padding: 16px;
-      background: var(--gds-white);
-    }
-
-    .support-type{
-      display:block;
-      font-size:12px;
-      font-weight:700;
-      letter-spacing:.06em;
-      text-transform:uppercase;
-      color: var(--gds-secondary);
-      margin-bottom:6px;
-    }
-
-    .support-tag{
-      display:inline-block;
-      font-size:12px;
-      font-weight:700;
-      color: var(--gds-white);
-      padding:3px 8px;
-      border-radius:6px;
-      margin-bottom:10px;
-    }
-
-    .support-card h3{
-      font-size:18px;
-      margin:0 0 8px 0;
-    }
-
-    .support-card p{
-      font-size:16px;
-      line-height:1.5;
-      margin:0 0 10px 0;
-    }
-
-    .support-card a{
-      font-size:16px;
-      font-weight:700;
-      color: var(--gds-link);
-      text-decoration: underline;
-    }
-
-    .govuk-list{
-      padding-left: 20px;
-      margin-bottom: 18px;
-    }
-
-    .govuk-list li{
-      margin-bottom: 8px;
-      font-size: 18px;
-      line-height: 1.5;
-    }
-
-    .accordion{
-      border-top: 2px solid var(--gds-text);
-      margin-top: 18px;
-    }
-
-    .accordion-item{
-      border-bottom:1px solid #d8d8d8;
-    }
-
-    .accordion-btn{
-      appearance:none;
-      width:100%;
-      border:none;
-      background:none;
-      text-align:left;
-      padding:16px 0;
-      font-size:18px;
-      font-weight:700;
-      color: var(--gds-text);
-      cursor:pointer;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:12px;
-    }
-
-    .accordion-btn::after{
-      content:"+";
-      font-size:28px;
-      font-weight:400;
-      color: var(--gds-link);
-      flex:0 0 auto;
-    }
-
-    .accordion-btn.open::after{
-      content:"−";
-    }
-
-    .accordion-content{
-      display:none;
-      padding: 0 0 16px 0;
-    }
-
-    .accordion-content.open{
-      display:block;
-    }
-
-    .accordion-content p{
-      font-size:16px;
-      line-height:1.6;
-      margin:0 0 12px 0;
-    }
-
-    .cta-panel{
-      background: var(--gds-bg);
-      border: 2px solid #e5e5e5;
-      border-radius: 10px;
-      padding: 18px;
-      margin-top: 30px;
-    }
-
-    .cta-panel h2,
-    .cta-panel h3{
-      font-size:22px;
-      margin:0 0 8px 0;
-    }
-
-    .cta-panel p{
-      font-size:16px;
-      line-height:1.5;
-      margin:0 0 14px 0;
-      color: var(--gds-secondary);
-    }
-
-    .govuk-button{
-      display:block;
-      width:100%;
-      background: var(--gds-green);
-      color: var(--gds-white);
-      font-size:18px;
-      font-weight:700;
-      text-decoration:none;
-      padding:12px 16px;
-      text-align:center;
-      box-shadow:0 3px 0 var(--gds-green-shadow);
-      border-radius:2px;
-      margin-bottom:12px;
-    }
-
-    .govuk-button:hover{
-      background:#005a30;
-      color: var(--gds-white);
-    }
-
-    .govuk-button--secondary{
-      background: var(--gds-white);
-      color: var(--gds-text);
-      box-shadow:0 3px 0 #929191;
-      border:2px solid var(--gds-border);
-    }
-
-    .govuk-button--secondary:hover{
-      background: var(--gds-bg);
-      color: var(--gds-text);
-    }
-
-    .page-nav{
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-      margin-top: 28px;
-      padding-top: 20px;
-      border-top: 1px solid #d8d8d8;
-    }
-
-    .page-nav a{
-      font-size:16px;
-      font-weight:700;
-      color: var(--gds-link);
-      text-decoration: underline;
-    }
-
-    .page-nav a:focus,
-    .govuk-button:focus,
-    .tab-btn:focus,
-    .accordion-btn:focus{
+    .journey-card:focus{
       outline: 3px solid var(--gds-focus);
       outline-offset: 0;
+    }
+
+    .journey-card__title{
+      display: block;
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      line-height: 1.2;
+    }
+
+    .journey-card__body{
+      display: block;
+      font-size: 16px;
+      line-height: 1.5;
+      color: var(--gds-secondary);
+    }
+
+    .journey-card__meta{
+      display: block;
+      margin-top: 12px;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--gds-link);
+      text-decoration: underline;
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      *{
+        scroll-behavior:auto !important;
+        transition:none !important;
+        animation:none !important;
+      }
     }
   </style>
 </head>
@@ -477,8 +177,8 @@
 <body>
   <div class="phone-shell">
     <div class="phone-btn power"></div>
-    <div class="phone" role="application" aria-label="Affording your studies prototype (phone)">
 
+    <div class="phone" role="application" aria-label="Understanding student finance prototype (phone)">
       <div class="phone-top">
         <span class="govuk-label">GOV<span class="gov-dot">•</span>UK</span>
       </div>
@@ -493,381 +193,37 @@
               <a class="govuk-breadcrumbs__link" href="#">Home</a>
             </li>
             <li class="govuk-breadcrumbs__list-item">
-              <a class="govuk-breadcrumbs__link" href="#">Understanding student finance</a>
-            </li>
-            <li class="govuk-breadcrumbs__list-item">
-              Affording your studies
+              Understanding student finance
             </li>
           </ol>
         </div>
 
-        <h1 class="govuk-heading-l" style="margin-bottom:25px;">Affording your studies</h1>
+        <h1 class="govuk-heading-l">Understanding student finance</h1>
 
-        <p class="govuk-body-m">
-          Going to university or college costs more than just tuition fees. This page helps you understand what you may need to pay for, what support is available, and how to think realistically about whether you can manage the costs.
-        </p>
-
-        <div class="inset">
-          The figures on this page are estimates based on typical student costs. Your actual costs will depend on where you study, how you live, and your circumstances. Use these as a starting point, not a guarantee.
-        </div>
-
-        <h2 class="govuk-heading-m">What you’ll need to pay for</h2>
         <p class="govuk-body">
-          Understanding the full picture of costs helps you plan before you commit to anything. There are three main categories to think about.
+          Choose where you’d like to start. You can explore real student experiences or look at the costs and support involved in studying.
         </p>
 
-        <h3 class="govuk-heading-s">Regular living costs</h3>
-        <ul class="govuk-list govuk-list--bullet">
-          <li>Rent or accommodation (usually your biggest cost)</li>
-          <li>Food and groceries</li>
-          <li>Utilities - gas and electricity (if not included in rent)</li>
-          <li>Internet and phone</li>
-          <li>Travel and transport</li>
-          <li>Toiletries and household basics</li>
-        </ul>
+        <div class="journey-list">
 
-        <h3 class="govuk-heading-s">One-off and occasional costs</h3>
-        <ul class="govuk-list govuk-list--bullet">
-          <li>Textbooks, course materials, and equipment</li>
-          <li>Laptop or tablet (if you don't have one already)</li>
-          <li>Accommodation deposits and setup costs</li>
-          <li>Clothing or bedding if moving away</li>
-        </ul>
+          <a class="journey-card" href="student-stories 3.html">
+            <span class="journey-card__title">Read student stories ></span>
+            <span class="journey-card__body">
+              Read about how real students approached student finance, what surprised them, and what they wish they’d known.
+            </span>
+          </a>
 
-        <h3 class="govuk-heading-s">Costs that are easy to forget</h3>
-        <ul class="govuk-list govuk-list--bullet">
-          <li>GP appointments and perscriptions</li>
-          <li>Dentist visits</li>
-          <li>Household contents insurance</li>
-          <li>Social life and wellbeing - these matter too</li>
-          <li>Childcare, if you have dependent children</li>
-        </ul>
+          <a class="journey-card" href="student-stories 3.html">
+            <span class="journey-card__title">Affording your studies ></span>
+            <span class="journey-card__body">
+              See typical study costs, what support is available, and how to think realistically about affordability.
+            </span>
+          </a>
 
-        <hr class="section-break">
-
-        <h2 class="govuk-heading-m">Estimated monthly costs</h2>
-        <p class="govuk-body">
-          These figures are estimates based on typical student spending in England. Costs vary a lot by location, especially in London.
-        </p>
-
-        <div class="tab-bar" role="tablist" aria-label="Living situation tabs">
-          <button class="tab-btn active" data-tab="halls" aria-selected="true">In halls</button>
-          <button class="tab-btn" data-tab="private" aria-selected="false">Private rental</button>
-          <button class="tab-btn" data-tab="home" aria-selected="false">Living at home</button>
-        </div>
-
-        <div class="tab-panel active" id="tab-halls">
-          <div class="warning">
-            <span>Halls fees often cover rent and sometimes bills — but not always. Check what is included before budgeting.</span>
-          </div>
-
-          <div class="cost-card">
-            <div class="cost-row cost-category">Accommodation</div>
-            <div class="cost-row">
-              <span class="cost-label">Halls outside London</span>
-              <span class="cost-value">£500–£750 a month</span>
-              <span class="cost-note">Varies significantly by provider and room type - often includes utilities and internet</span>
-            </div>
-            <div class="cost-row">
-              <span class="cost-label">Halls in London</span>
-              <span class="cost-value">£750–£1,100 a month</span>
-              <span class="cost-note">London costs are higher - you should also check what's included</span>
-            </div>
-            <div class="cost-row cost-category">Day-to-day living</div>
-            <div class="cost-row">
-              <span class="cost-label">Food and groceries</span>
-              <span class="cost-value">£150–£250</span>
-            </div>
-            <div class="cost-row">
-              <span class="cost-label">Transport</span>
-              <span class="cost-value">£30–£80</span>
-              <span class="cost-note">Depends on distance and mode of transport</span>
-            </div>
-            <div class="cost-row">
-              <span class="cost-label">Phone and personal costs</span>
-              <span class="cost-value">£40–£70</span>
-            </div>
-            <div class="cost-row cost-category">Study costs</div>
-            <div class="cost-row">
-              <span class="cost-label">Books and course materials</span>
-              <span class="cost-value">£20-£50</span>
-              <span class="cost-note">Averaged over a term - use library where possible</span>
-            </div>
-            <div class="cost-row cost-total">
-              <span class="cost-total-value">Estimated total (outside of London)</span>
-              <span class="cost-value">£740–£1,200</span>
-              <span class="cost-note">Excluding tuition fees</span>
-            </div>
-            <div class="cost-row cost-total-2">
-              <span class="cost-total-value">Estimated total (in London)</span>
-              <span class="cost-value">£990–£1,550</span>
-              <span class="cost-note">Excluding tuition fees</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="tab-panel" id="tab-private">
-          <div class="warning">
-            <span>Private rentals often need a deposit upfront. Factor this in before you commit.</span>
-          </div>
-
-          <div class="cost-card">
-            <div class="cost-row cost-category">Accommodation</div>
-            <div class="cost-row">
-              <span class="cost-label">Shared rent outside London</span>
-              <span class="cost-value">£400–£650 a month</span>
-              <span class="cost-note">Per person in a shared house</span>
-            </div>
-            <div class="cost-row">
-              <span class="cost-label">Shared rent in London</span>
-              <span class="cost-value">£700–£1,000 a month</span>
-              <span class="cost-note">Varies widely by area</span>
-            </div>
-            <div class="cost-row">
-              <span class="cost-label">Gas and electricity (shared)</span>
-              <span class="cost-value">£40-£80 a month</span>
-              <span class="cost-note">Your share of household bills</span>
-            </div>
-            <div class="cost-row">
-              <span class="cost-label">Internet (shared)</span>
-              <span class="cost-value">£10-£20 a month</span>
-              <span class="cost-note">Your share</span>
-            </div>
-            <div class="cost-row cost-category">Day-to-day living</div>
-            <div class="cost-row">
-              <span class="cost-label">Food and groceries</span>
-              <span class="cost-value">£150–£250</span>
-            </div>
-            <div class="cost-row">
-              <span class="cost-label">Transport</span>
-              <span class="cost-value">£30-£80</span>
-              <span class="cost-note">Depends on distance and mode of transport</span>
-            </div>
-            <div class="cost-row">
-              <span class="cost-label">Phone and personal costs</span>
-              <span class="cost-value">£40–£70</span>
-            </div>
-            <div class="cost-row cost-category">Study costs</div>
-            <div class="cost-row">
-              <span class="cost-label">Books and materials</span>
-              <span class="cost-value">£20-£50</span>
-              <span class="cost-note">Averaged over a term - use library where possible</span>
-            </div>
-            <div class="cost-row cost-total">
-              <span class="cost-total-value">Estimated total (outside of London)</span>
-              <span class="cost-value">£700–£1,230</span>
-              <span class="cost-note">Excluding tuition fees</span>
-            </div>
-            <div class="cost-row cost-total-2">
-              <span class="cost-total-value">Estimated total (in London)</span>
-              <span class="cost-value">£1,00–£1,580</span>
-              <span class="cost-note">Excluding tuition fees</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="tab-panel" id="tab-home">
-          <div class="blue-insert-text">
-            Living at home usually reduces your costs a lot. Your maintenance loan may be lower, but many students still save more overall.
-          </div>
-
-          <div class="cost-card">
-            <div class="cost-row cost-category">Home contribution</div>
-            <div class="cost-row">
-              <span class="cost-label">Contribution to family household</span>
-              <span class="cost-value">£0–£300 a month</span>
-              <span class="cost-note">Depends on family arrangement</span>
-            </div>
-            <div class="cost-row cost-category">Day-to-day living</div>
-            <div class="cost-row">
-              <span class="cost-label">Transport</span>
-              <span class="cost-value">£30-£80</span>
-              <span class="cost-note">Depends on distance and mode of transport</span>
-            </div>
-            <div class="cost-row">
-              <span class="cost-label">Phone and personal costs</span>
-              <span class="cost-value">£40–£70</span>
-            </div>
-            <div class="cost-row cost-category">Study costs</div>
-            <div class="cost-row">
-              <span class="cost-label">Books and materials</span>
-              <span class="cost-value">£20-£50</span>
-              <span class="cost-note">Averaged over a term - use library where possible</span>
-            </div>
-            <div class="cost-row cost-total">
-              <span class="cost-total-value">Estimated monthly total</span>
-              <span class="cost-value">£120–£720</span>
-              <span class="cost-note">Wide range depending on family arrangement and travel costs</span>
-            </div>
-          </div>
-        </div>
-
-        <hr class="section-break">
-
-        <h2 class="govuk-heading-m">What support is available</h2>
-        <p class="govuk-body">
-          Student finance in England can include different types of support. Not all of it is a loan, and not all of it needs to be paid back.
-        </p>
-
-        <div class="support-list">
-          <div class="support-card">
-            <span class="support-type">Loan</span>
-            <span class="support-tag" style="background:#1D70B8">Tuition Fee Loan</span>
-            <h3>Up to £9,535 per year</h3>
-            <p>Paid directly to your university or college to cover your tuition fees. You don't see this money — it goes straight to your provider. You repay it after you graduate, but only when you earn above the threshold.</p>
-            <a href="#">About the Tuition Fee Loan ></a>
-          </div>
-
-          <div class="support-card">
-            <span class="support-type">Loan</span>
-            <span class="support-tag" style="background:#158187">Maintenance Loan</span>
-            <h3>Up to £13,348 per year</h3>
-            <p>Paid to you in three instalments to help cover living costs. The amount depends on your household income, where you study, and whether you live at home or away. London students receive more.</p>
-            <a href="#">About the Maintenance Loan ></a>
-          </div>
-
-          <div class="support-card">
-            <span class="support-type">Grant — does not need to be repaid</span>
-            <span class="support-tag" style="background:#11875A">Disabled Students' Allowance</span>
-            <h3>Support for additional needs</h3>
-            <p>If you have a disability, long-term health condition, mental health condition, or a specific learning difficulty like dyslexia, you may be eligible for additional support.</p>
-            <a href="#">About Disabled Students' Allowance ></a>
-          </div>
-
-          <div class="support-card">
-            <span class="support-type">Grant — does not need to be repaid</span>
-            <span class="support-tag" style="background:#ca357c">Childcare Grant</span>
-            <h3>Up to 85% of childcare costs</h3>
-            <p>If you have dependent children in registered childcare, you may be able to claim back up to 85% of your childcare costs while studying. This is on top of your student loan and does not need to be repaid.</p>
-            <a href="#">About the Childcare Grant ></a>
-          </div>
-
-          <div class="support-card">
-            <span class="support-type">Grant — does not need to be repaid</span>
-            <span class="support-tag" style="background:#54319f">Parents' Learning Allowance</span>
-            <h3>Up to £1,821 per year</h3>
-            <p>Additional support for student parents to help cover the costs of studying while raising children. Means-tested and paid on top of the maintenance loan.</p>
-            <a href="#">About Parents' Learning Allowance ></a>
-          </div>
-
-          <div class="support-card">
-            <span class="support-type">University funding</span>
-            <span class="support-tag" style="background:#ca3535">Bursaries and hardship funds</span>
-            <h3>Varies by institution</h3>
-            <p>Many universities and colleges offer their own bursaries, scholarships, and hardship funds, separate from Student Finance England.</p>
-            <a href="#">Find out about extra support ></a>
-          </div>
-        </div>
-
-        <hr class="section-break">
-
-        <h2 class="govuk-heading-m">Understanding repayment</h2>
-        <p class="govuk-body">
-          Student loans in England work differently to other kinds of debt. It's worth understanding this before worries about debt put you off.
-        </p>
-
-        <div class="section-break">
-          <div class="accordion-item">
-            <button class="accordion-btn" type="button">You only repay when you earn enough</button>
-            <div class="accordion-content">
-              <p>You start making repayments only once your income rises above a threshold — currently £25,000 a year (Plan 5). Below that, you pay nothing, regardless of how much you borrowed.</p>
-              <p>Repayments are 9% of whatever you earn above the threshold. If you earn £27,000, you repay 9% of £2,000 — that's £180 a year, or £15 a month.</p>
-            </div>
-          </div>
-
-          <div class="accordion-item">
-            <button class="accordion-btn" type="button">It is taken automatically from your salary</button>
-            <div class="accordion-content">
-              <p>Repayments are normally collected through PAYE, like tax and National Insurance. You do not get a separate bill each month.</p>
-            </div>
-          </div>
-
-          <div class="accordion-item">
-            <button class="accordion-btn" type="button">The loan is written off after 40 years</button>
-            <div class="accordion-content">
-              <p>If you haven't repaid the full loan after 40 years, the remaining balance is written off. This means many graduates — especially those in lower-earning careers — will never repay the full amount. The loan does not follow you forever.</p>
-              <p>This is very different from credit card debt or a bank loan, where the full amount is always due.</p>
-            </div>
-          </div>
-
-          <div class="accordion-item">
-            <button class="accordion-btn" type="button">It does not affect your credit score like normal debt</button>
-            <div class="accordion-content">
-              <p>Your student loan doesn't appear on your credit file in the same way a commercial loan would. Mortgage lenders will consider your monthly repayments as part of affordability assessments, but the loan itself is not treated as standard debt.</p>
-            </div>
-          </div>
-        </div>
-
-        <h2 class="govuk-heading-m">Working out your budget</h2>
-        <p class="govuk-body">
-          Before you accept a place, it's worth doing a rough budget. You are simply checking whether your likely income covers your likely outgoings.
-        </p>
-
-        <h3 class="govuk-heading-s">Income side</h3>
-        <ul class="govuk-list govuk-list--bullet">
-          <li>Maintenance loan</li>
-          <li>Any grants, bursaries, or scholarships</li>
-          <li>Part-time work, if relevant</li>
-          <li>Any family contribution</li>
-        </ul>
-
-        <h3 class="govuk-heading-s">Costs side</h3>
-        <ul class="govuk-list govuk-list--bullet">
-          <li>Rent or accommodation fees</li>
-          <li>Food, travel, phone, and utilities</li>
-          <li>Course materials and equipment</li>
-          <li>Personal spending</li>
-        </ul>
-
-        <div class="inset">
-          <strong>The gap is real.</strong> For many students, the maintenance loan does not cover all living costs. Planning ahead for part-time work, family support, or hardship funds is sensible.
-          </div>
-        <p class="govuk-body">
-          The Money Advice Service offers a free budgeting tool that works well for students: <a href="#" class="govuk-link govuk-link--no-visited-state">Budget Planner - Money Helper (opens in a new tab)</a>
-        </p>
-
-
-        <div class="cta-panel">
-          <h3>Ready to find out what you might get?</h3>
-          <p>Use the student finance checker to get a more personalised estimate based on your living situation and circumstances.</p>
-          <a href="#" class="govuk-button">Check what you could get ></a>
-          <a href="student-stories 1.html" class="govuk-button govuk-button--secondary">Read student stories</a>
         </div>
 
       </div>
     </div>
   </div>
-
-  <script>
-    const tabButtons = document.querySelectorAll(".tab-btn");
-    const tabPanels = document.querySelectorAll(".tab-panel");
-
-    tabButtons.forEach(button => {
-      button.addEventListener("click", () => {
-        const tab = button.dataset.tab;
-
-        tabButtons.forEach(btn => {
-          btn.classList.remove("active");
-          btn.setAttribute("aria-selected", "false");
-        });
-
-        tabPanels.forEach(panel => panel.classList.remove("active"));
-
-        button.classList.add("active");
-        button.setAttribute("aria-selected", "true");
-        document.getElementById(`tab-${tab}`).classList.add("active");
-      });
-    });
-
-    const accordionButtons = document.querySelectorAll(".accordion-btn");
-
-    accordionButtons.forEach(button => {
-      button.addEventListener("click", () => {
-        button.classList.toggle("open");
-        const content = button.nextElementSibling;
-        content.classList.toggle("open");
-      });
-    });
-  </script>
 </body>
 </html>
