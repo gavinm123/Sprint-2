@@ -171,106 +171,10 @@
         animation:none !important;
       }
     }
-
-    /* --- Simple password gate styles --- */
-    #lockScreen{
-      position: fixed;
-      inset: 0;
-      background: rgba(243,242,241,0.98);
-      z-index: 9999;
-      display: grid;
-      place-items: center;
-    }
-    .lock-card{
-      background: #fff;
-      border: 2px solid var(--gds-black);
-      border-radius: 10px;
-      max-width: 420px;
-      width: calc(100% - 32px);
-      padding: 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-    }
-    .lock-card h1{
-      font-size: 22px;
-      margin: 0 0 6px 0;
-    }
-    .lock-card p{
-      margin: 0 0 12px 0;
-    }
-    .lock-input{
-      width: 100%;
-      padding: 10px 12px;
-      font-size: 16px;
-      border: 2px solid var(--gds-border);
-      border-radius: 6px;
-      margin-bottom: 8px;
-    }
-    .lock-error{
-      color: #d4351c;
-      display: none;
-      margin: 0 0 8px 0;
-      font-size: 16px;
-    }
   </style>
-
-  <!-- --- Lightweight password gate (deterrent only) --- -->
-  <script>
-    // Change this to your preferred password:
-    const PASSWORD = "lettherightonein";
-
-    function allowAccess() {
-      const lock = document.getElementById("lockScreen");
-      if (lock) lock.style.display = "none";
-      // Optional: Move focus to main content for accessibility
-      const main = document.getElementById("main-content");
-      if (main) main.setAttribute("tabindex", "-1"), main.focus();
-    }
-
-    function denyAccess() {
-      const err = document.getElementById("pwd-error");
-      const input = document.getElementById("pwd");
-      if (err) err.style.display = "block";
-      if (input) input.value = "", input.focus();
-    }
-
-    function checkPassword(event){
-      event.preventDefault();
-      const input = document.getElementById("pwd");
-      if (!input) return;
-      if (input.value === PASSWORD) {
-        allowAccess();
-      } else {
-        denyAccess();
-      }
-    }
-
-    document.addEventListener("DOMContentLoaded", () => {
-      const form = document.getElementById("pwd-form");
-      const input = document.getElementById("pwd");
-      if (form) form.addEventListener("submit", checkPassword);
-      if (input) input.focus();
-    });
-  </script>
 </head>
 
 <body>
-  <!-- Password overlay -->
-  <div id="lockScreen" role="dialog" aria-modal="true" aria-labelledby="lock-title" aria-describedby="pwd-hint">
-    <div class="lock-card">
-      <h1 id="lock-title" class="govuk-heading-m">Enter password</h1>
-      <p id="pwd-hint" class="govuk-body-s">This demo is lightly protected for preview only.</p>
-      <form id="pwd-form">
-        <input class="lock-input" type="password" id="pwd" name="pwd" autocomplete="current-password" aria-describedby="pwd-error" placeholder="Password">
-        <p id="pwd-error" class="lock-error">Incorrect password — please try again.</p>
-        <button type="submit" class="govuk-button">Continue</button>
-      </form>
-      <noscript>
-        <p class="govuk-body-s" style="margin-top:8px;">JavaScript is required to view this page.</p>
-      </noscript>
-    </div>
-  </div>
-  <!-- /Password overlay -->
-
   <div class="phone-shell">
     <div class="phone-btn power"></div>
 
