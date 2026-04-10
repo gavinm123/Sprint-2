@@ -639,12 +639,47 @@
   border-top: 1px solid #b1b4b6;
 }
 ``
+/* ==================================================
+   VIEW MODE TOGGLE LOGIC
+   ================================================== */
 
+(function () {
+  const body = document.body;
+  const buttons = document.querySelectorAll('.view-btn');
+
+  function setView(mode) {
+    body.classList.toggle('desktop-mode', mode === 'desktop');
+
+    buttons.forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.view === mode);
+    });
+  }
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      setView(btn.dataset.view);
+    });
+  });
+
+  // Default to desktop view
+  setView('desktop');
+})();
 
   </style>
 </head>
 
 <body>
+  
+<!-- VIEW MODE TOGGLE (desktop / mobile) -->
+<div class="view-toggle" aria-label="Preview mode">
+  <button type="button" class="view-btn active" data-view="desktop">
+    Desktop view
+  </button>
+  <button type="button" class="view-btn" data-view="mobile">
+    Mobile view
+  </button>
+</div>
+
   <div class="phone-shell">
     <div class="phone-btn power"></div>
     <div class="phone" role="application" aria-label="Affording your studies prototype (phone)">
