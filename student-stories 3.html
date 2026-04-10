@@ -3,15 +3,11 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Student stories — prototype (phone)</title>
+  <title>Affording your studies — prototype (phone)</title>
 
-  <!-- GOV.UK Frontend CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/govuk-frontend@5.4.0/dist/govuk/govuk-frontend.min.css">
 
   <style>
-    /* =========
-       GDS palette (approx) + layout tokens
-       ========= */
     :root{
       --gds-black:#0b0c0c;
       --gds-white:#ffffff;
@@ -22,31 +18,24 @@
       --gds-link:#1d70b8;
       --gds-link-hover:#003078;
       --gds-focus:#ffdd00;
+      --gds-green:#00703c;
+      --gds-green-shadow:#002d18;
+      --gds-orange:#f47738;
       --radius: 12px;
       --phoneW: 460px;
-
-      /* CHANGED: GOV.UK font stack (forces consistent typography) */
       --gds-font: "GDS Transport", arial, sans-serif;
     }
-    
-    .govuk-breadcrumbs{
-      margin-bottom:40px;
-    }
-    /* Basic page */
+
     body{
       background: var(--gds-white);
       color: var(--gds-text);
       font-family: var(--gds-font);
     }
 
-
     .phone, .phone *{
       font-family: var(--gds-font);
     }
 
-    /* =========
-       Phone frame
-       ========= */
     .phone-shell{
       position: relative;
       max-width: var(--phoneW);
@@ -62,46 +51,39 @@
       z-index: 10;
     }
 
-    .power{ 
+    .power{
       right: 10px;
       top: 250px;
       height: 100px;
-    }     
+    }
 
     .phone{
       background: var(--gds-white);
       border: 12px solid #0b0c0c;
       border-radius: 45px;
       overflow-y: auto;
-      overflowy-x: visible;
       box-shadow: 0 25px 50px rgba(0,0,0,.25), 0 10px 20px rgba(0,0,0,.15);
       height: 850px;
       position: relative;
-
       -ms-overflow-style: none;
       scrollbar-width: none;
     }
-    .phone: :webkit-scrollbar {
-      display: none;
+
+    .phone::-webkit-scrollbar{
+      display:none;
     }
 
-
-    /* Optional “status bar” look (purely cosmetic) */
     .phone-top{
       padding: 18px 22px;
       border-bottom: 1px solid #e5e5e5;
-
-      /* CHANGED: black bar */
       background: #1d70b8;
       color: var(--gds-white);
-
       display: flex;
       align-items: center;
       justify-content: space-between;
       font-size: 20px;
     }
 
-    /* CHANGED: GOV.UK label styling */
     .phone-top .govuk-label{
       margin: 0;
       color: var(--gds-white);
@@ -109,427 +91,566 @@
       font-weight: 700;
       letter-spacing: .02em;
     }
-    
+
     .gov-dot{
       color: #00ffe0;
       margin: 0 2px;
       font-size: 0.9em;
     }
-    .phone-top strong{ color: var(--gds-white); font-weight: 700; }
 
-    /* Content padding inside the phone */
     .phone-body{
       padding: 16px;
     }
 
-    .intro{
-      margin: 0 0 12px 0;
-      color: var(--gds-secondary);
-      font-size: 16px;
-      line-height: 1.5;
+    .govuk-breadcrumbs{
+      margin-bottom: 40px;
     }
 
-    /* Inset message */
+    .govuk-body{
+      font-size: 19px;
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+
+    .govuk-body-s{
+      font-size: 16px;
+      line-height: 1.5;
+      color: var(--gds-secondary);
+      margin-bottom: 16px;
+    }
+
+    .govuk-body-l{
+      font-size: 20px;
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+
+    .govuk-heading-l{
+      margin-bottom: 24px !important;
+    }
+
+    .govuk-heading-m{
+      scroll-margin-top: 50px;
+      font-size: 24px;
+      margin-top: 40px;
+      margin-bottom: 12px;
+    }
+
+    .govuk-heading-s{
+      font-size: 19px;
+      margin-top: 24px;
+      margin-bottom: 10px;
+    }
+
     .inset{
       border-left: 6px solid #b1b4b6;
       padding: 12px 12px;
       background: #f8f8f8;
-      margin: 14px 0 16px;
+      margin: 18px 0 24px;
       border-radius: 6px;
-      color: var(--gds-secondary);
-      font-size: 16px;
-    }
-
-    /* Filters */
-    .filterbar{
-      margin: 10px 0 14px;
-      margin-bottom: 20px;
-      padding: 10px 10px;
-      background: var(--gds-bg);
-      border: 1px solid #e5e5e5;
-      border-radius: var(--radius);
-    }
-    .filterbar-top{
-      display:flex;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: 10px;
-      margin-bottom: 8px;
-    }
-    .filterbar-top .label{
-      font-weight: 700;
-      font-size: 16px;
-    }
-    .count{
-      font-size: 16px;
-      color: var(--gds-secondary);
-    }
-    .chips{
-      display:flex;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
-    /* Accessible button chips */
-    .chip{
-      appearance:none;
-      border: 2px solid var(--gds-border);
-      background: var(--gds-white);
       color: var(--gds-text);
-      font-weight: 700;
       font-size: 16px;
-      padding: 6px 10px;
-      border-radius: 999px;
-      cursor: pointer;
-      line-height: 1.2;
+      line-height: 1.5;
     }
-    .chip:hover{ border-color: var(--gds-text); }
-    .chip[aria-pressed="true"]{
+
+    .warning{
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+      padding: 14px 14px;
+      background: #fff4e5;
+      border-left: 6px solid var(--gds-orange);
+      margin: 18px 0 20px;
+      border-radius: 6px;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
+    .blue-insert-text{
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+      padding: 14px 14px;
+      background: #f4f8fb;
+      border-left: 6px solid #1d70b8;
+      margin: 18px 0 20px;
+      border-radius: 6px;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
+    .section-break{
+      border: none;
+      border-top: 1px solid #d8d8d8;
+      margin: 28px 0;
+    }
+
+    .tab-bar{
+     display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      margin: 16px 0 18px;
+    }
+
+    .tab-btn{
+      appearance:none;
+      border:2px solid var(--gds-border);
+      background: var(--gds-bg);
+      color: var(--gds-text);
+      font-size:16px;
+      font-weight:700;
+      padding:10px 12px;
+      border-radius:999px;
+      cursor:pointer;
+    }
+
+    .tab-btn.active{
       background: var(--gds-text);
       color: var(--gds-white);
       border-color: var(--gds-text);
     }
 
-    /* Story list */
-    .list{
-      display:flex;
-      flex-direction: column;
-      gap: 12px;
-      margin-bottom: 12px;
-    }
-    .card{
-      width: 100%;
-      text-align: left;
-      border: 2px solid #e5e5e5;
-      background: var(--gds-white);
-      border-radius: var(--radius);
-      padding: 0;
-      cursor: pointer;
-      overflow: hidden;
-      margin-bottom: 12px;
-    }
-    .card:hover{ border-color: var(--gds-text); }
-    .card:focus{ outline: none; }
-    .card:focus-visible{
-      outline: 4px solid var(--gds-focus);
-      outline-offset: 0;
-    }
-    .card-band{ height: 8px; width: 100%; }
-    .card-inner{
-      padding: 14px 14px 12px;
-      display:flex;
-      gap: 12px;
-      align-items: flex-start;
-    }
-    .avatar{
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      color: var(--gds-white);
-      font-weight: 800;
-      flex: 0 0 auto;
-    }
-    .meta{ flex: 1 1 auto; min-width: 0; }
-    .name{
-      margin: 0 0 6px 0;
-      font-size: 24px;
-      font-weight: 700;
-      color: var(--gds-text);
-    }
-    .details{
-      margin: 0 0 8px 0;
-      font-size: 16px;
-      color: var(--gds-secondary);
-      line-height: 1.4;
-    }
-    .tags{
-      display:flex;
-      gap: 6px;
-      flex-wrap: wrap;
-      margin-bottom: 10px;
-    }
-    .tag{
-      display:inline-block;
-      font-size: 16px;
-      font-weight: 700;
-      padding: 3px 8px;
-      border-radius: 6px;
-      color: var(--gds-white);
-    }
-    .quote{
-      margin: 0;
-      font-size: 16px;
-      color: var(--gds-text);
-      line-height: 1.5;
-      border-left: 4px solid #e5e5e5;
-      padding-left: 10px;
-    }
-    .card-footer{
-      padding: 10px 14px 12px;
-      border-top: 1px solid #e5e5e5;
-      display:flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 10px;
-    }
-    .readlink{
-      color: var(--gds-link);
-      font-weight: 700;
-      text-decoration: underline;
-      font-size: 16px;
-    }
-    .card:hover .readlink{
-      color: var(--gds-link-hover);
-      text-decoration: none;
-    }
-    .badge{
-      font-size: 14px;
-      font-weight: 800;
-      padding: 2px 8px;
-      border-radius: 999px;
-      border: 1px solid #b1b4b6;
-      color: var(--gds-secondary);
-      background: #f8f8f8;
-      flex: 0 0 auto;
-    }
-
-    /* Empty state */
-    .empty{
+    .tab-panel{
       display:none;
-      padding: 18px;
-      border: 1px solid #e5e5e5;
-      background: #fafafa;
-      border-radius: var(--radius);
-      color: var(--gds-secondary);
-    }
-    .empty.show{ display:block; }
-
-    /* =========
-       Full-screen story panel (inside the phone)
-       ========= */
-    .overlay{
-      position:absolute;
-      inset:0;
-      background: rgba(11,12,12,.65);
-      display:none;
-      align-items: flex-end;
-      justify-content: center;
-      padding: 10px;
-    }
-    .overlay.open{ display:flex; }
-
-    .panel{
-      -webkit-overflow-scrolling: touch;
-      width: 100%;
-      max-height: 100%;
-      background: var(--gds-white);
-      border: 2px solid var(--gds-text);
-      border-radius: 18px;
-      overflow-y: auto;
-      display:flex;
-      flex-direction: column;
-      box-shadow: 0 10px 30px rgba(11,12,12,.2);
     }
 
-    .panel-band{ height: 8px; }
-    .panel-head{
-      padding: 14px 14px 12px;
-      border-bottom: 1px solid #e5e5e5;
-      display:flex;
-      gap: 12px;
-      align-items: flex-start;
-    }
-
-    .video-box{
-      margin:20px 0;
-    }
-
-    .video-thumb{
-      position: relative;
-      width:100%;
-      height: 180px;
-      background: #d8dde0;
-      border-radius: 6px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-    }
-
-    .play-button{
-      width: 60px;
-      height: 60px;
-      background: #0b0c0c;
-      border-radius: 50%;
-      position: relative;
-    }
-
-    .play-button:after{
-      content: "";
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-40%,-50%);
-      border-style: solid;
-      border-width: 12px 0 12px 18px;
-      border-color: transparent transparent transparent white;
-    }
-
-    .video-caption{
-      margin-top: 8px;
-      font-size: 16px;
-      line-height: 1.4;
-    }
-
-    .story-cta{
-      margin-top: 24px;
-    }
-
-    .afford-btn{
-      display: block;
-      background: #00703c;
-      color: #ffffff;
-      font-size: 16px;
-      font-weight: 700;
-      text-decoration: none;
-      padding: 10px 16px;
-      text-align: center;
-      box-shadow: 0 2px 0 #002d18;
-      border-radius: 2px;
-     }
-     
-     .afford-btn:hover{
-       background: #005a30;
-       color: #ffffff;
-     }
-
-     .afford-btn:focus{
-       outline: 3px solid #ffdd00;
-       outline-offset: 0;
-      }
-
-    .panel-title{ flex: 1 1 auto; min-width: 0; }
-    .panel-title h2{
-      margin: 0 0 2px 0;
-      font-size: 18px;
-      font-weight: 900;
-    }
-    .panel-title p{
-      margin: 0;
-      color: var(--gds-secondary);
-      font-size: 16px;
-      line-height: 1.4;
-    }
-    .close{
-      appearance:none;
-      border: 2px solid var(--gds-border);
-      background: var(--gds-bg);
-      color: var(--gds-text);
-      font-weight: 800;
-      padding: 6px 10px;
-      border-radius: 10px;
-      cursor:pointer;
-      flex: 0 0 auto;
-    }
-    .close:hover{ border-color: var(--gds-text); }
-    .close:focus-visible{
-      outline: 4px solid var(--gds-focus);
-      outline-offset: 0;
-    }
-    .panel-body{
-      padding: 14px;
-      overflow:auto;
-    }
-    .highlight{
-      background: var(--gds-bg);
-      border-left: 6px solid var(--gds-border);
-      padding: 12px 12px;
-      border-radius: 10px;
-      margin-bottom: 12px;
-    }
-    .highlight p{
-      margin:0;
-      font-style: italic;
-      font-size: 16px;
-      line-height: 1.55;
-    }
-    .section{
-      margin: 12px 0;
-      margin-top: 24px;
-    }
-    .section .label{
+    .tab-panel.active{
       display:block;
-      font-size: 20px;
-      font-weight: 700;
-      letter-spacing: normal;
-      text-transform: none;
-      color: var(--gds-text);
-      margin-bottom: 20px;
     }
-    .section p{
-      margin: 0;
-      margin-top: 8px;
-      font-size: 16px;
-      line-height: 1.6;
-      color: var(--gds-text);
+
+    .cost-card{
+      border: 1px solid #d8d8d8;
+      border-radius: 10px;
+      overflow:hidden;
+      margin-bottom: 18px;
+      background: var(--gds-white);
     }
-    .advice{
-      margin-top: 12px;
-      padding-left: 10px;
-      border-left: 4px solid var(--gds-border);
-      font-style: italic;
-    }
-    .panel-foot{
+
+    .cost-row{
       padding: 12px 14px;
       border-top: 1px solid #e5e5e5;
-      background: var(--gds-bg);
-      display:flex;
-      align-items:center;
-      justify-content: space-between;
-      gap: 10px;
-    }
-    .navbtn{
-      appearance:none;
-      border: 2px solid var(--gds-border);
-      background: var(--gds-white);
-      color: var(--gds-text);
-      font-weight: 800;
-      padding: 8px 10px;
-      border-radius: 10px;
-      cursor:pointer;
-    }
-    .navbtn:hover{ border-color: var(--gds-text); }
-    .navbtn:disabled{ opacity:.45; cursor: default; }
-    .navbtn:focus-visible{
-      outline: 4px solid var(--gds-focus);
-      outline-offset: 0;
-    }
-    .progress{
-      font-size: 13px;
-      color: var(--gds-secondary);
-      font-weight: 700;
-      margin-left: auto;
     }
 
-    @media (prefers-reduced-motion: reduce){
-      *{ scroll-behavior:auto !important; transition:none !important; animation:none !important; }
+    .cost-row:first-child{
+      border-top:none;
     }
+
+    .cost-label{
+      display:block;
+      font-size:18px;
+      margin-bottom:4px;
+    }
+
+    .cost-value{
+      display:block;
+      font-size:18px;
+      margin-bottom:4px;
+    }
+
+    .cost-note{
+      display:block;
+      font-size:15px;
+      color: var(--gds-secondary);
+      line-height:1.4;
+    }
+
+    .cost-category{
+      background: var(--gds-bg);
+      font-size:13px;
+      font-weight:700;
+      letter-spacing:.04em;
+      text-transform:uppercase;
+      color: var(--gds-secondary);
+    }
+
+    .cost-total{
+      background:#f3f8f6;
+      border-top:2px solid var(--gds-green);
+    }
+
+    .cost-total-2{
+      background:#f6f5fa;
+      border-top:2px solid #54319f;
+    }
+
+    .cost-total-value{
+      display:block;
+      font-weight: 700;
+      font-size:18px;
+      margin-bottom:4px;
+    }
+
+    .support-list{
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+      margin-bottom: 8px;
+    }
+
+    .support-card{
+      border: 2px solid #e5e5e5;
+      border-radius: 10px;
+      padding: 16px;
+      background: var(--gds-white);
+    }
+
+    .support-type{
+      display:block;
+      font-size:12px;
+      font-weight:700;
+      letter-spacing:.06em;
+      text-transform:uppercase;
+      color: var(--gds-secondary);
+      margin-bottom:6px;
+    }
+
+    .support-tag{
+      display:inline-block;
+      font-size:12px;
+      font-weight:700;
+      color: var(--gds-white);
+      padding:3px 8px;
+      border-radius:6px;
+      margin-bottom:10px;
+    }
+
+    .support-card h3{
+      font-size:18px;
+      margin:0 0 8px 0;
+    }
+
+    .support-card p{
+      font-size:16px;
+      line-height:1.5;
+      margin:0 0 10px 0;
+    }
+
+    .support-card a{
+      font-size:16px;
+      font-weight:700;
+      color: var(--gds-link);
+      text-decoration: underline;
+    }
+
+    .govuk-list{
+      padding-left: 20px;
+      margin-bottom: 18px;
+    }
+
+    .govuk-list li{
+      margin-bottom: 8px;
+      font-size: 18px;
+      line-height: 1.5;
+    }
+
+    .accordion{
+      border-top: 1px solid #cecece;
+      margin-top: 18px;
+    }
+
+    .accordion-item{
+      border-bottom:1px solid #d8d8d8;
+    }
+
+    .accordion-btn{
+      appearance:none;
+      width:100%;
+      border:none;
+      background:none;
+      text-align:left;
+      padding:16px 0;
+      font-size:19px;
+      font-weight:700;
+      color: var(--gds-text);
+      cursor:pointer;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+    }
+
+    .accordion-btn::after{
+      content:"+";
+      font-size:28px;
+      font-weight:400;
+      color: var(--gds-link);
+      flex:0 0 auto;
+    }
+
+    .accordion-btn.open::after{
+      content:"−";
+    }
+
+    .accordion-content{
+      display:none;
+      padding: 0 0 16px 0;
+    }
+
+    .accordion-content.open{
+      display:block;
+    }
+
+    .accordion-content p{
+      font-size:19px;
+      line-height:1.6;
+      margin:0 0 12px 0;
+    }
+
+    .cta-panel{
+      background: var(--gds-bg);
+      border: 2px solid #e5e5e5;
+      border-radius: 10px;
+      padding: 18px;
+      margin-top: 30px;
+    }
+
+    .cta-panel h2,
+    .cta-panel h3{
+      font-size:22px;
+      margin:0 0 8px 0;
+    }
+
+    .cta-panel p{
+      font-size:16px;
+      line-height:1.5;
+      margin:0 0 14px 0;
+      color: var(--gds-secondary);
+    }
+
+    .govuk-button{
+      display:block;
+      width:100%;
+      background: var(--gds-green);
+      color: var(--gds-white);
+      font-size:18px;
+      font-weight:700;
+      text-decoration:none;
+      padding:12px 16px;
+      text-align:center;
+      box-shadow:0 3px 0 var(--gds-green-shadow);
+      border-radius:2px;
+      margin-bottom:12px;
+    }
+
+    .govuk-button:hover{
+      background:#005a30;
+      color: var(--gds-white);
+    }
+
+    .govuk-button--secondary{
+      background: var(--gds-white);
+      color: var(--gds-text);
+      box-shadow:0 3px 0 #929191;
+      border:2px solid var(--gds-border);
+    }
+
+    .govuk-button--secondary:hover{
+      background: var(--gds-bg);
+      color: var(--gds-text);
+    }
+
+    .step-page{
+      display:none;
+    }
+
+    .step-page.active{
+      display:block;
+    }
+
+    .step-link-list{
+      list-style:none;
+      padding-left:0;
+      margin-bottom:24px;
+    }
+
+    .step-link-list li{
+      margin-bottom:10px;
+      font-size:16px;
+      line-height:1.5;
+    }
+
+    .step-link-list a{
+      color: var(--gds-link);
+      text-decoration: underline;
+    }
+
+    .step-link-list a.current{
+      color: var(--gds-text);
+      text-decoration: none;
+    }
+
+    .step-link-list li::before{
+      content:"— ";
+      color: var(--gds-text);
+      margin-right: 4px;
+    }
+
+    .step-nav{
+      display:flex;
+      flex-direction:column;
+      gap:0;
+      margin-top: 25px;
+    }
+
+    .step-nav-link{
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+      text-decoration:none;
+      padding:12px 0;
+      border-top:1px solid #d8d8d8;
+      color: var(--gds-link);
+    }
+
+    .step-nav-link:last-child{
+      border-bottom:1px solid #d8d8d8;
+    }
+
+    .step-nav-link:hover .step-nav-title{
+      text-decoration:none;
+    }
+
+    .step-nav-arrow{
+      font-size:28px;
+      line-height:1;
+      color: var(--gds-secondary);
+      flex:0 0 auto;
+      margin-top:2px;
+    }
+
+    .step-nav-text{
+      min-width:0;
+    }
+
+    .step-nav-label{
+      display:block;
+      font-size:19px;
+      font-weight:700;
+      line-height:1.2;
+      margin-bottom:4px;
+      color:#1a65a6;
+    }
+
+    .step-nav-title{
+      display:block;
+      font-size:19px;
+      line-height:1.3;
+      color: var(--gds-link);
+      text-decoration: underline;
+    }
+
+    .page-nav a:focus,
+    .govuk-button:focus,
+    .tab-btn:focus,
+    .accordion-btn:focus,
+    .step-nav-link:focus,
+    .step-link-list a:focus{
+      outline: 3px solid var(--gds-focus);
+      outline-offset: 0;
+    }
+
+    /* ===== CHECK IF YOU CAN AFFORD TO STUDY — Direction 3 ===== */
+
+    .wibe-independent-note { background:#f0f5fb; border-left:4px solid #1d70b8; padding:10px 12px; border-radius:4px; margin-top:10px; font-size:14px; line-height:1.5; display:none; }
+    .wibe-independent-note.show { display:block; }
+
+    /* Zone 1: inputs */
+    .wibe-zone-inputs { background:#f5f6f7; padding:18px; margin:0 -16px; }
+    .wibe-zone-label { font-size:19px; font-weight:700; letter-spacing:.08em; ; color:#1d70b8; margin:0 0 16px; display:block; }
+    .wibe-selectors { display:flex; flex-direction:column; gap:14px; }
+    .wibe-sel-row { display:flex; flex-direction:column; gap:4px; }
+    .wibe-select { width:100%; font-size:16px; padding:8px 10px; border:2px solid #0b0c0c; border-radius:4px; font-family:var(--gds-font); background:white; }
+    .wibe-select:focus { outline:3px solid var(--gds-focus); outline-offset:0; }
+    .wibe-year-hint { font-size:16px; color:var(--gds-secondary); line-height:1.4; margin-top:1px; display:block; font-family:var(--gds-font) }
+    .wibe-work-input-wrap { display:flex; align-items:center; gap:4px; margin-top:4px; }
+    .wibe-work-prefix { font-size:16px; font-weight:700; color:var(--gds-secondary); }
+    .wibe-work-input { width:90px; font-size:16px; font-weight:700; padding:8px 10px; border:2px solid #0b0c0c; border-radius:4px; text-align:right; font-family:var(--gds-font); background:white; }
+    .wibe-work-input:focus { outline:3px solid var(--gds-focus); outline-offset:0; }
+
+    /* Zone 2: blue chapter break */
+    .wibe-chapter-break { background:#1d70b8; padding:20px 18px; margin:0 -16px; }
+    .wibe-chapter-label { font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:rgba(255,255,255,.75); margin:0 0 14px; display:block; }
+    .wibe-chapter-amounts { display:flex; }
+    .wibe-chapter-col { flex:1; }
+    .wibe-chapter-col:first-child { padding-right:16px; margin-right:16px; border-right:1px solid rgba(255,255,255,.3); }
+    .wibe-chapter-amt-label { font-size:16px; color:#ffffff; display:block; margin-bottom:2px; font-weight:600; }
+    .wibe-chapter-amt-val { font-size:40px; font-weight:900; display:block; line-height:1; color:#ffffff; }
+    .wibe-chapter-amt-val.green { color:#85e0ab; }
+    .wibe-chapter-amt-unit { font-size:13px; color:rgba(255,255,255,.7); display:block; margin-top:3px; }
+    .wibe-work-line { display:none; margin-top:10px; padding-top:10px; border-top:1px solid rgba(255,255,255,.25); }
+    .wibe-work-line.show { display:block; }
+    .wibe-work-line-label { font-size:16px; color:#ffffff; display:block; margin-bottom:2px; font-weight:600; }
+    .wibe-work-line-val { font-size:36px; font-weight:700; color:#85e0ab; display:block; }
+
+    /* Zone 3: costs */
+    .wibe-zone-costs { background:white; margin:0 -16px; }
+    .wibe-costs-head { padding:14px 18px 8px; font-size:16px; color:#505a5f; }
+    .wibe-cost-row { display:flex; align-items:center; padding:10px 18px; border-top:1px solid #f0f0f0; gap:12px; background:white; }
+    .wibe-cost-label { flex:1; font-size:16px; line-height:1.3; display:flex; flex-direction:column; gap:2px; }
+    .wibe-cost-note { font-size:14px; color:var(--gds-secondary); }
+    .wibe-input-wrap { display:flex; align-items:center; gap:3px; flex-shrink:0; }
+    .wibe-prefix { font-size:16px; font-weight:700; color:var(--gds-secondary); }
+    .wibe-input { width:68px; font-size:16px; font-weight:700; padding:6px 8px; border:2px solid var(--gds-border); border-radius:4px; text-align:right; font-family:var(--gds-font); background:#fafafa; }
+    .wibe-input:focus { outline:3px solid var(--gds-focus); outline-offset:0; border-color:#0b0c0c; background:white; }
+    .wibe-total-row { display:flex; justify-content:space-between; align-items:center; padding:12px 18px; background:#fafafa; border-top:2px solid #0b0c0c; }
+    .wibe-total-label { font-size:16px; font-weight:700; }
+    .wibe-total-value { font-size:19px; font-weight:700; }
+
+    /* Verdict */
+    .wibe-verdict { overflow:hidden; margin:0 -16px; }
+    .wibe-verdict-header { padding:18px 18px 14px; background:#f47738; }
+    .wibe-verdict.surplus .wibe-verdict-header { background:#0f7a52; }
+    .wibe-verdict-header-label { font-size:16px; color:#ffffff; display:block; margin-bottom:2px; font-weight:600; }
+    .wibe-verdict-heading { font-size:34px; font-weight:900; margin:0; color:#ffffff; line-height:1; }
+    .wibe-verdict-body-zone { padding:16px 18px; background:#f7996a; }
+    .wibe-verdict-subhead {margin-top: 0;margin-bottom: 10px;color: #0b0c0c;text-transform: none;letter-spacing: normal; display:block; font-weight:700; font-size:24px; }
+    .wibe-verdict-body { font-size:16px; line-height:1.6; margin:0 0 10px; color:#ffffff; }
+    .wibe-verdict-body:last-child { margin-bottom:0; }
+    .wibe-disclaimer { font-size:14px; color:rgba(255,255,255,.55); line-height:1.5; margin-top:14px; padding-top:12px; border-top:1px solid rgba(255,255,255,.15); margin-bottom:0; display:block; }
+    
+    
+.wibe-verdict {
+  background:#ffffff; /* default = gap */
+}
+
+.wibe-verdict.surplus {
+  background: #005a30; /* surplus */
+}
+
+/* Make body readable */
+.wibe-verdict-body-zone {
+  background: rgba(0,0,0,.12);
+}
+    
+    
+/* WHAT THIS MEANS → white background */
+.wibe-verdict-body-zone {
+  background: #ffffff;
+}
+
+/* Fix text contrast */
+.wibe-verdict-body,
+.wibe-verdict-subhead,
+.wibe-disclaimer {
+  color: #0b0c0c;
+}
+
+.wibe-disclaimer {
+  border-top: 1px solid #b1b4b6;
+}
+``
+
+
   </style>
 </head>
 
 <body>
   <div class="phone-shell">
     <div class="phone-btn power"></div>
-    <div class="phone" role="application" aria-label="Student stories prototype (phone)">
-     
+    <div class="phone" role="application" aria-label="Affording your studies prototype (phone)">
 
       <div class="phone-top">
-        <!-- CHANGED: GOV.UK text, white, GOV.UK font -->
-        <span class="govuk-label">GOV<span
-      class="gov-dot">•</span>UK</span>
+        <span class="govuk-label">GOV<span class="gov-dot">•</span>UK</span>
       </div>
 
       <a class="govuk-skip-link" href="#main-content">Skip to main content</a>
@@ -537,238 +658,906 @@
       <div class="phone-body" id="main-content">
 
         <div class="govuk-breadcrumbs" aria-label="Breadcrumb">
-  <ol class="govuk-breadcrumbs__list">
-    <li class="govuk-breadcrumbs__list-item">
-      <a class="govuk-breadcrumbs__link" href="#">Home</a>
-    </li>
-    <li class="govuk-breadcrumbs__list-item">
-      <a class="govuk-breadcrumbs__link" 
-      href="test.html">
-        Understanding student finance
-      </a>
-    </li>
-    <li class="govuk-breadcrumbs__list-item">
-      Student stories
-    </li>
-  </ol>
-</div>
-
-
-        <h1 class="govuk-heading-l" style="margin-bottom:25px;">Student stories</h1>
-
-        <div class="govuk-body">
-          Read about how real students approached university and further education — how they worked out what student finance meant for them, what surprised them, and what they wish they’d known.
+          <ol class="govuk-breadcrumbs__list">
+            <li class="govuk-breadcrumbs__list-item">
+              <a class="govuk-breadcrumbs__link" href="#">Home</a>
+            </li>
+            <li class="govuk-breadcrumbs__list-item">
+              <a class="govuk-breadcrumbs__link" href="understanding-student-finance.html">
+                Understanding student finance
+              </a>
+            </li>
+            <li class="govuk-breadcrumbs__list-item">
+              Affording your studies
+            </li>
+          </ol>
         </div>
 
-        <div class="filterbar" role="navigation" aria-label="Filter stories">
-          <div class="filterbar-top">
-            <div class="label">Filter</div>
-            <div class="count" id="resultsCount" aria-live="polite">0 stories</div>
+        <h1 class="govuk-heading-l" style="margin-bottom:25px;">Affording your studies</h1>
+
+        <p class="govuk-body-s govuk-!-margin-bottom-2">Contents</p>
+
+        <ul class="step-link-list" id="contentsList">
+          <li><a class="govuk-link current" href="#overview" data-step="overview">Overview</a></li>
+          <li><a class="govuk-link" href="#what-youll-need-to-pay-for" data-step="what-youll-need-to-pay-for">What you'll need to pay for</a></li>
+          <li><a class="govuk-link" href="#estimated-monthly-costs" data-step="estimated-monthly-costs">Estimated monthly costs</a></li>
+          <li><a class="govuk-link" href="#how-students-cover-costs" data-step="how-students-cover-costs">How students usually cover their costs</a></li>
+          <li><a class="govuk-link" href="#will-it-be-enough" data-step="will-it-be-enough">Check if you can afford to study</a></li>
+          <li><a class="govuk-link" href="#what-support-is-available" data-step="what-support-is-available">What support is available</a></li>
+          <li><a class="govuk-link" href="#get-an-estimate" data-step="get-an-estimate">Check what student finance you could get</a></li>
+          <li><a class="govuk-link" href="#how-repayment-works" data-step="how-repayment-works">How repayment works</a></li>
+        </ul>
+
+        <div class="step-page active" id="step-overview" data-step-title="Overview">
+          <h2 class="govuk-heading-m" id="overview">Overview</h2>
+          <p class="govuk-body">Going to university often means managing your own money for the first time.</p>
+          <p class="govuk-body">This page helps you understand:</p>
+          <ul class="govuk-list govuk-list--bullet">
+            <li>what students typically need to pay for</li>
+            <li>how much those costs can add up to each month</li>
+            <li>how students usually cover their everyday costs</li>
+          </ul>
+          <div class="warning">
+            The figures on this page are estimates, based on typical student spending. Your actual costs will depend on where you study, how you live and your circumstances.
           </div>
-          <div class="chips" id="filterGroup">
-            <button class="chip" data-filter="all" aria-pressed="true">All</button>
-            <button class="chip" data-filter="living-away" aria-pressed="false">Living away</button>
-            <button class="chip" data-filter="living-at-home" aria-pressed="false">Living with parents</button>
-            <button class="chip" data-filter="care-experienced" aria-pressed="false">Care experienced</button>
-            <button class="chip" data-filter="further-education" aria-pressed="false">Further education</button>
-            <button class="chip" data-filter="part-time" aria-pressed="false">Part-time study</button>
-            <button class="chip" data-filter="mature" aria-pressed="false">Mature student</button>
+          <p class="govuk-body">If you have never managed your own household costs before, some of these figures may be hard to judge at first. Use this page to understand what your costs are likely to look like, rather than to get an exact figure.</p>
+          <div class="page-nav"></div>
+        </div>
+
+        <div class="step-page" id="step-what-youll-need-to-pay-for" data-step-title="What you'll need to pay for">
+          <h2 class="govuk-heading-m" id="what-youll-need-to-pay-for">What you'll need to pay for</h2>
+          <p class="govuk-body">Understanding the full range of costs can help you plan before you make decisions about where and how to study.</p>
+
+          <h3 class="govuk-heading-s">Regular living costs</h3>
+          <p class="govuk-body">These are ongoing costs you usually need to pay every month:</p>
+          <ul class="govuk-list govuk-list--bullet">
+            <li>rent or accommodation (often the biggest cost)</li>
+            <li>food and groceries</li>
+            <li>household bills, such as gas and electricity (if not included in your rent)</li>
+            <li>internet and phone</li>
+            <li>travel and transport</li>
+            <li>toiletries and household basics</li>
+          </ul>
+
+          <h3 class="govuk-heading-s">One-off and occasional costs</h3>
+          <p class="govuk-body">These do not happen every month, but still need planning:</p>
+          <ul class="govuk-list govuk-list--bullet">
+            <li>textbooks, course materials and equipment</li>
+            <li>a laptop or tablet, if you do not already have one</li>
+            <li>accommodation deposits and setup costs</li>
+            <li>clothing or bedding if you are moving away from home</li>
+          </ul>
+
+          <h3 class="govuk-heading-s">Costs that are easy to forget</h3>
+          <p class="govuk-body">Some costs are not always obvious when you first plan your budget:</p>
+          <ul class="govuk-list govuk-list--bullet">
+            <li>eye tests and glasses, prescriptions and dentist visits</li>
+            <li>household contents insurance</li>
+            <li>social and leisure costs (these are part of day-to-day life)</li>
+            <li>childcare, if you have dependent children</li>
+          </ul>
+          <p class="govuk-body">Some costs come up only a few times a year, but you still need money set aside for them.</p>
+
+          <div class="page-nav"></div>
+        </div>
+
+        <div class="step-page" id="step-estimated-monthly-costs" data-step-title="Estimated monthly costs">
+          <h2 class="govuk-heading-m" id="estimated-monthly-costs">Estimated monthly costs</h2>
+          <p class="govuk-body">
+            These figures are estimates based on typical student spending in England. Costs vary a lot by location, especially in London.
+          </p>
+
+          <div class="tab-bar" role="tablist" aria-label="Living situation tabs">
+            <button class="tab-btn active" data-tab="halls" aria-selected="true">University halls</button>
+            <button class="tab-btn" data-tab="private" aria-selected="false">Renting privately</button>
+            <button class="tab-btn" data-tab="home" aria-selected="false">Living with parents</button>
           </div>
-        </div>
 
-        <div class="list" id="list" aria-label="Stories list"></div>
-
-        <div class="empty" id="emptyState">
-          No stories match that filter yet — more are being added regularly.
-        </div>
-      </div>
-
-      <!-- Full-screen panel overlay (inside phone) -->
-      <div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-labelledby="panelName">
-        <div class="panel" id="panel" tabindex="-1">
-          <div class="panel-band" id="panelBand"></div>
-          <div class="panel-head">
-            <div class="avatar" id="panelAvatar" aria-hidden="true">A</div>
-            <div class="panel-title">
-              <h2 id="panelName">Name</h2>
-              <p id="panelMeta">Meta</p>
-              <div class="tags" id="panelTags" style="margin-top:8px;"></div>
+          <div class="tab-panel active" id="tab-halls">
+            <div class="warning">
+              <span>Halls fees often cover rent and sometimes bills — but not always. Check what is included before budgeting.</span>
             </div>
-            <button class="close" id="closeBtn" aria-label="Close story">Close</button>
+
+            <div class="cost-card">
+              <div class="cost-row cost-category">Accommodation</div>
+              <div class="cost-row">
+                <span class="cost-label">Halls outside London</span>
+                <span class="cost-value">£500–£750 a month</span>
+                <span class="cost-note">Varies significantly by provider and room type - often includes utilities and internet</span>
+              </div>
+              <div class="cost-row">
+                <span class="cost-label">Halls in London</span>
+                <span class="cost-value">£900–£1,600 a month</span>
+                <span class="cost-note">En-suite rooms average around £1,000; studios considerably more</span>
+              </div>
+              <div class="cost-row cost-category">Day-to-day living</div>
+              <div class="cost-row">
+                <span class="cost-label">Food and groceries</span>
+                <span class="cost-value">£150–£250</span>
+              </div>
+              <div class="cost-row">
+                <span class="cost-label">Transport (outside London)</span>
+                <span class="cost-value">£30-£80</span>
+              </div>
+              <div class="cost-row">
+                <span class="cost-label">Transport (in London)</span>
+                <span class="cost-value">£90-£150</span>
+                <span class="cost-note">With 18+ Student Oyster card (30% discount)</span>
+              </div>
+              <div class="cost-row">
+                <span class="cost-label">Phone and personal costs</span>
+                <span class="cost-value">£40–£70</span>
+              </div>
+              <div class="cost-row cost-category">Study costs</div>
+              <div class="cost-row">
+                <span class="cost-label">Books and course materials</span>
+                <span class="cost-value">£20-£50</span>
+                <span class="cost-note">Averaged over a term - use library where possible</span>
+              </div>
+              <div class="cost-row cost-total">
+                <span class="cost-total-value">Estimated total (outside of London)</span>
+                <span class="cost-value">£740–£1,200</span>
+                <span class="cost-note">Excluding tuition fees</span>
+              </div>
+              <div class="cost-row cost-total-2">
+                <span class="cost-total-value">Estimated total (in London)</span>
+                <span class="cost-value">£1,200–£2,100</span>
+                <span class="cost-note">Excluding tuition fees</span>
+              </div>
+            </div>
           </div>
-          <div class="panel-body" id="panelBody"></div>
-          <div class="panel-foot">
-            <button class="navbtn" id="prevBtn">← Previous</button>
-            <button class="navbtn" id="nextBtn">Next →</button>
-            <span class="progress" id="panelProgress">Story 1 of 1</span>
+
+          <div class="tab-panel" id="tab-private">
+            <div class="warning">
+              <span>Private rentals usually require a deposit (often 5 weeks' rent) upfront. Factor this into your planning before you commit.</span>
+            </div>
+
+            <div class="cost-card">
+              <div class="cost-row cost-category">Accommodation</div>
+              <div class="cost-row">
+                <span class="cost-label">Shared rent outside London</span>
+                <span class="cost-value">£400-£650 a month</span>
+                <span class="cost-note">Per person in a shared house</span>
+              </div>
+              <div class="cost-row">
+                <span class="cost-label">Shared rent in London</span>
+                <span class="cost-value">£800–£1,200 a month</span>
+                <span class="cost-note">Varies widely by area</span>
+              </div>
+              <div class="cost-row">
+                <span class="cost-label">Gas and electricity (Outside London, shared)</span>
+                <span class="cost-value">£40-£80 a month</span>
+                <span class="cost-note">Your share of household bills</span>
+              </div>
+              <div class="cost-row">
+                <span class="cost-label">Gas and electricity (London, shared)</span>
+                <span class="cost-value">£60-£120 a month</span>
+                <span class="cost-note">Your share; London properties often less energy efficient</span>
+              </div>
+              <div class="cost-row">
+                <span class="cost-label">Internet (shared)</span>
+                <span class="cost-value">£10-£20 a month</span>
+                <span class="cost-note">Your share</span>
+              </div>
+              <div class="cost-row cost-category">Day-to-day living</div>
+              <div class="cost-row">
+                <span class="cost-label">Food and groceries</span>
+                <span class="cost-value">£150–£250</span>
+              </div>
+              <div class="cost-row">
+                <span class="cost-label">Transport (outside London)</span>
+                <span class="cost-value">£30-£80</span>
+              </div>
+              <div class="cost-row">
+                <span class="cost-label">Transport (in London)</span>
+                <span class="cost-value">£90-£150</span>
+                <span class="cost-note">With 18+ Student Oyster card (30% discount)</span>
+              </div>
+              <div class="cost-row">
+                <span class="cost-label">Phone and personal costs</span>
+                <span class="cost-value">£40–£70</span>
+              </div>
+              <div class="cost-row cost-category">Study costs</div>
+              <div class="cost-row">
+                <span class="cost-label">Books and materials</span>
+                <span class="cost-value">£20-£50</span>
+                <span class="cost-note">Averaged over a term - use library where possible</span>
+              </div>
+              <div class="cost-row cost-total">
+                <span class="cost-total-value">Estimated total (outside of London)</span>
+                <span class="cost-value">£700–£1,230</span>
+                <span class="cost-note">Excluding tuition fees</span>
+              </div>
+              <div class="cost-row cost-total-2">
+                <span class="cost-total-value">Estimated total (in London)</span>
+                <span class="cost-value">£1,050–£1,870</span>
+                <span class="cost-note">Excluding tuition fees</span>
+              </div>
+            </div>
           </div>
+
+          <div class="tab-panel" id="tab-home">
+            <div class="blue-insert-text">
+              Living at home usually reduces your costs a lot. Your maintenance loan may be lower, but many students still save more overall.
+            </div>
+
+            <div class="cost-card">
+              <div class="cost-row cost-category">Home contribution</div>
+              <div class="cost-row">
+                <span class="cost-label">Contribution to family household</span>
+                <span class="cost-value">£0–£300 a month</span>
+                <span class="cost-note">Depends on family arrangement</span>
+              </div>
+              <div class="cost-row cost-category">Day-to-day living</div>
+              <div class="cost-row">
+                <span class="cost-label">Transport</span>
+                <span class="cost-value">£30-£80</span>
+                <span class="cost-note">Depends on distance and mode of transport</span>
+              </div>
+              <div class="cost-row">
+                <span class="cost-label">Phone and personal costs</span>
+                <span class="cost-value">£40–£70</span>
+              </div>
+              <div class="cost-row cost-category">Study costs</div>
+              <div class="cost-row">
+                <span class="cost-label">Books and materials</span>
+                <span class="cost-value">£20-£50</span>
+                <span class="cost-note">Averaged over a term - use library where possible</span>
+              </div>
+              <div class="cost-row cost-total">
+                <span class="cost-total-value">Estimated monthly total</span>
+                <span class="cost-value">£120–£720</span>
+                <span class="cost-note">Wide range depending on family arrangement and travel costs</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="page-nav"></div>
         </div>
+
+        <div class="step-page" id="step-how-students-cover-costs" data-step-title="How students usually cover their costs">
+          <h2 class="govuk-heading-m" id="how-students-cover-costs">How students usually cover their costs</h2>
+          <p class="govuk-body">Most students need more money than their maintenance loan alone provides.</p>
+          <p class="govuk-body">Students often cover everyday costs using a combination of:</p>
+          <ul class="govuk-list govuk-list--bullet">
+            <li>paid work during term time</li>
+            <li>support from family or carers</li>
+            <li>savings or other income</li>
+          </ul>
+          <p class="govuk-body">What works depends on your situation.</p>
+          <p class="govuk-body">If your income and costs are close, students often adjust by:</p>
+          <ul class="govuk-list govuk-list--bullet">
+            <li>working some hours during term time</li>
+            <li>choosing different accommodation</li>
+            <li>budgeting differently day to day</li>
+          </ul>
+          <p class="govuk-body">This is normal, especially in your first year.</p>
+          <div class="page-nav"></div>
+        </div>
+
+        <div class="step-page" id="step-will-it-be-enough" data-step-title="Check if you can afford to study">
+          <h2 class="govuk-heading-m" id="will-it-be-enough">Check if you can afford to study</h2>
+          <p class="govuk-body">Use this tool to compare your estimated maintenance loan with your estimated living costs while you study.</p>
+          <p class="govuk-body">You can explore different options and see how changes affect the comparison between your loan and your costs.</p>
+          <p class="govuk-body">For example, you can try:</p>
+          <ul class="govuk-list govuk-list--bullet">
+            <li>living at home or away</li>
+            <li>studying in or outside London</li>
+            <li>working during term time or not</li>
+          </ul>
+          <p class="govuk-body">You can change any figure to match your plans.</p>
+
+          <!-- Zone 1: inputs on warm grey background -->
+          <div class="wibe-zone-inputs">
+            <div class="wibe-selectors" role="group" aria-label="Your situation">
+
+              <div class="wibe-sel-row">
+                <label class="govuk-heading-s" for="wibeSituation">Where will you live while studying?</label>
+                <span class="wibe-year-hint">This is where you expect to live for most of the academic year.</span>
+                <select class="wibe-select" id="wibeSituation">
+                  <option value="halls-out">University halls — outside London</option>
+                  <option value="halls-lon">University halls — London</option>
+                  <option value="private-out">Private rented (shared) — outside London</option>
+                  <option value="private-lon">Private rented (shared) — London</option>
+                  <option value="home">Living with parents or family</option>
+                </select>
+              </div>
+
+              <div class="wibe-sel-row">
+                <label class="govuk-heading-s" for="wibeYear">When will you start your course?</label>
+                <span class="wibe-year-hint">We use this to apply the correct loan rates. Loan rates are updated each February. If you are not sure yet, we’ll use the current year’s rates.</span>
+                <select class="wibe-select" id="wibeYear">
+                  <option value="2526" selected>Not sure yet</option>
+                  <option value="2526">2025 to 2026</option>
+                  <option value="2627">2026 to 2027</option>
+                </select>
+              </div>
+
+              <div class="wibe-sel-row">
+                <label class="govuk-heading-s" for="wibeStatus">Which option applies to you?</label>
+                <span class="wibe-year-hint" id="wibeStatusHint">This tells us whose income is used to work out your maintenance loan. For most students under 25, the loan is based on their parents’ income. If one of the other options applies, it is based on your own income.</span>
+                <select class="wibe-select" id="wibeStatus">
+                  <option value="dependent">I am under 25 and not married</option>
+                  <option value="independent">I am 25 or over</option>
+                  <option value="independent">I am married or in a civil partnership</option>
+                  <option value="independent">I have a child under 18 in my care</option>
+                  <option value="independent">I have supported myself for 3 or more years</option>
+                </select>
+              </div>
+
+              <div class="wibe-sel-row">
+                <label class="govuk-heading-s" for="wibeIncome" id="wibeIncomeLabel">Last year’s household income</label>
+                <span class="wibe-year-hint" id="wibeIncomeHint">This means the total income of your parents or your partner, if you have one. It does not include flatmates or other students you share rent with. If you are not sure, we’ll use an average figure.</span>
+                <select class="wibe-select" id="wibeIncome">
+                  <option value="mid" selected>Not sure</option>
+                  <option value="low">Under £25,000 a year</option>
+                  <option value="mid">£25,000 to £42,000 a year</option>
+                  <option value="high">£42,000 to £62,000 a year</option>
+                  <option value="top">Over £62,000 a year</option>
+                </select>
+              </div>
+
+              <div class="wibe-independent-note" id="wibeIndependentNote">
+                You are likely to be an <strong>independent student</strong> — your loan will be based on your own income, not your parents’. Independent students often receive a higher loan.
+              </div>
+
+              <div class="wibe-sel-row">
+                <label class="govuk-heading-s" for="wibeWork">Money from paid work each month</label>
+                <span class="wibe-year-hint">If you expect to get money from paid work during term time, enter a rough monthly amount. If you do not plan to work, leave this at £0. It’s OK if you’re unsure. Plans often change.</span>
+                <div class="wibe-work-input-wrap">
+                  <span class="wibe-work-prefix" aria-hidden="true">£</span>
+                  <input type="number" class="wibe-work-input" id="wibeWork" value="0" min="0" max="9999" aria-label="Monthly income from paid work in pounds">
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Zone 2: blue chapter break -->
+          <div class="wibe-chapter-break">
+            <div class="wibe-chapter-amounts">
+              <div class="wibe-chapter-col">
+                <span class="wibe-chapter-amt-label">Your estimated maintenance loan</span>
+                <span class="wibe-chapter-amt-val green" id="wibeLoanAmt">£911</span>
+                <span class="wibe-chapter-amt-unit">per month</span>
+                <div class="wibe-work-line" id="wibeWorkRow">
+                  <span class="wibe-work-line-label">+ your paid work</span>
+                  <span class="wibe-work-line-val" id="wibeWorkAmt">£0</span>
+                  <span class="wibe-chapter-amt-unit">per month</span>
+                </div>
+              </div>
+              <div class="wibe-chapter-col">
+                <span class="wibe-chapter-amt-label">Estimated living costs</span>
+                <span class="wibe-chapter-amt-val" id="wibeCostTotal">£920</span>
+                <span class="wibe-chapter-amt-unit">per month</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Zone 3: editable costs on white -->
+          <div class="wibe-zone-costs">
+            <div class="wibe-costs-head">Adjust any figure to match your plans &#9998;</div>
+            <div role="group" aria-label="Monthly cost breakdown">
+              <div class="wibe-cost-row">
+                <label class="wibe-cost-label" for="wibeAccom">
+                  Accommodation
+                  <span class="wibe-cost-note" id="wibeAccomNote">Typical halls rent outside London</span>
+                </label>
+                <div class="wibe-input-wrap">
+                  <span class="wibe-prefix" aria-hidden="true">£</span>
+                  <input type="number" class="wibe-input" id="wibeAccom" value="600" min="0" max="9999" aria-label="Accommodation cost per month in pounds">
+                </div>
+              </div>
+              <div class="wibe-cost-row">
+                <label class="wibe-cost-label" for="wibeFood">Food and groceries</label>
+                <div class="wibe-input-wrap">
+                  <span class="wibe-prefix" aria-hidden="true">£</span>
+                  <input type="number" class="wibe-input" id="wibeFood" value="185" min="0" max="9999" aria-label="Food and groceries per month in pounds">
+                </div>
+              </div>
+              <div class="wibe-cost-row">
+                <label class="wibe-cost-label" for="wibeTransport">Transport</label>
+                <div class="wibe-input-wrap">
+                  <span class="wibe-prefix" aria-hidden="true">£</span>
+                  <input type="number" class="wibe-input" id="wibeTransport" value="45" min="0" max="9999" aria-label="Transport per month in pounds">
+                </div>
+              </div>
+              <div class="wibe-cost-row">
+                <label class="wibe-cost-label" for="wibePhone">Phone and personal</label>
+                <div class="wibe-input-wrap">
+                  <span class="wibe-prefix" aria-hidden="true">£</span>
+                  <input type="number" class="wibe-input" id="wibePhone" value="55" min="0" max="9999" aria-label="Phone and personal costs per month in pounds">
+                </div>
+              </div>
+              <div class="wibe-cost-row">
+                <label class="wibe-cost-label" for="wibeCourse">
+                  Course materials
+                  <span class="wibe-cost-note">Averaged over the term</span>
+                </label>
+                <div class="wibe-input-wrap">
+                  <span class="wibe-prefix" aria-hidden="true">£</span>
+                  <input type="number" class="wibe-input" id="wibeCourse" value="35" min="0" max="9999" aria-label="Course materials per month in pounds">
+                </div>
+              </div>
+            </div>
+            <div class="wibe-total-row">
+              <span class="wibe-total-label">Total monthly costs</span>
+              <span class="wibe-total-value" id="wibeTotalDisplay" aria-live="polite" aria-atomic="true">£920</span>
+            </div>
+          </div>
+
+          <!-- Verdict: dark blue band -->
+          <div class="wibe-verdict shortfall" id="wibeVerdict">
+            <div class="wibe-verdict-header">
+              <span class="wibe-verdict-header-label" id="wibeVerdictLabel">Your estimate shows a gap of</span>
+              <p class="wibe-verdict-heading" id="wibeVerdictHeading">£9 a month</p>
+            </div>
+            <div class="wibe-verdict-body-zone" id="wibeVerdictBodyShortfall">
+              <span class="wibe-verdict-subhead">What this means💡</span>
+              <p class="wibe-verdict-body">Gaps of this size are common, especially in the first year. When you are new to managing your own money, this usually means there is very little spare money to deal with higher bills, travel, or costs you did not expect.</p>
+              <p class="wibe-verdict-body">Some costs vary month to month, and others only come up a few times a year. This estimate does not include one-off or unexpected costs, such as deposits, travel home, or higher bills in winter. Having a buffer can help with this.</p>
+              <p class="wibe-verdict-body">Use this estimate to help you plan how you would manage your costs, and to have conversations with family, partners or advisers about what support or changes might be needed.</p>
+              <p class="wibe-disclaimer">Loan figures are estimates. Your actual amount depends on your household income assessment and the rates for your academic year.</p>
+            </div>
+            <div class="wibe-verdict-body-zone" id="wibeVerdictBodySurplus" style="display:none;">
+              <span class="wibe-verdict-subhead">What this means💡</span>
+              <p class="wibe-verdict-body">Your loan looks likely to cover your estimated costs. It is still worth keeping a small buffer for one-off or unexpected costs, such as deposits, travel home, or higher bills in winter.</p>
+              <p class="wibe-disclaimer">Loan figures are estimates. Your actual amount depends on your household income assessment and the rates for your academic year.</p>
+            </div>
+          </div>
+
+          <div class="page-nav"></div>
+        </div>
+
+        <div class="step-page" id="step-what-support-is-available" data-step-title="What support is available">
+          <h2 class="govuk-heading-m" id="what-support-is-available">What support is available</h2>
+          <p class="govuk-body">
+            Student finance in England can include different types of support. Not all of it is a loan, and not all of it needs to be paid back.
+          </p>
+
+          <div class="support-list">
+            <div class="support-card">
+              <span class="support-type">Loan</span>
+              <span class="support-tag" style="background:#1D70B8">Tuition Fee Loan</span>
+              <h3>Up to £9,535 per year</h3>
+              <p>Paid directly to your university or college to cover your tuition fees. You don't see this money — it goes straight to your provider. You repay it after you graduate, but only when you earn above the threshold.</p>
+              <a href="#">About the Tuition Fee Loan ></a>
+            </div>
+
+            <div class="support-card">
+              <span class="support-type">Loan</span>
+              <span class="support-tag" style="background:#158187">Maintenance Loan</span>
+              <h3>Up to £13,348 per year</h3>
+              <p>Paid to you in three instalments to help cover living costs. The amount depends on your household income, where you study, and whether you live at home or away. London students receive more.</p>
+              <a href="#">About the Maintenance Loan ></a>
+            </div>
+
+            <div class="support-card">
+              <span class="support-type">Grant — does not need to be repaid</span>
+              <span class="support-tag" style="background:#11875A">Disabled Students' Allowance</span>
+              <h3>Support for additional needs</h3>
+              <p>If you have a disability, long-term health condition, mental health condition, or a specific learning difficulty like dyslexia, you may be eligible for additional support.</p>
+              <a href="#">About Disabled Students' Allowance ></a>
+            </div>
+
+            <div class="support-card">
+              <span class="support-type">Grant — does not need to be repaid</span>
+              <span class="support-tag" style="background:#ca357c">Childcare Grant</span>
+              <h3>Up to 85% of childcare costs</h3>
+              <p>If you have dependent children in registered childcare, you may be able to claim back up to 85% of your childcare costs while studying. This is on top of your student loan and does not need to be repaid.</p>
+              <a href="#">About the Childcare Grant ></a>
+            </div>
+
+            <div class="support-card">
+              <span class="support-type">Grant — does not need to be repaid</span>
+              <span class="support-tag" style="background:#54319f">Parents' Learning Allowance</span>
+              <h3>Up to £1,821 per year</h3>
+              <p>Additional support for student parents to help cover the costs of studying while raising children. Means-tested and paid on top of the maintenance loan.</p>
+              <a href="#">About Parents' Learning Allowance ></a>
+            </div>
+
+            <div class="support-card">
+              <span class="support-type">University funding</span>
+              <span class="support-tag" style="background:#ca3535">Bursaries and hardship funds</span>
+              <h3>Varies by institution</h3>
+              <p>Many universities and colleges offer their own bursaries, scholarships, and hardship funds, separate from Student Finance England.</p>
+              <a href="#">Find out about extra support ></a>
+            </div>
+          </div>
+
+          <div class="page-nav"></div>
+        </div>
+
+        <div class="step-page" id="step-how-repayment-works" data-step-title="How repayment works">
+          <h2 class="govuk-heading-m" id="how-repayment-works">How repayment works</h2>
+          <p class="govuk-body">
+            Student loans in England work differently to other kinds of debt. It's worth understanding this before worries about debt put you off.
+          </p>
+
+          <div class="accordion">
+            <div class="accordion-item">
+              <button class="accordion-btn" type="button">You only repay when you earn enough</button>
+              <div class="accordion-content">
+                <p>You only start repaying when you earn over <strong>£25,000 a year</strong> (for plan 5), and you <strong>repay 9%</strong> of whatever you earn.</p>
+                <p>For example:</p>
+                <ul class="govuk-list govuk-list--bullet">
+                  <li>If you earn under <strong>£25,000</strong>, you pay <strong>£0</strong></li>
+                  <li>If you earn <strong>£27,000</strong>, you pay about <strong>£15</strong> a month</li>
+                  <li>If you earn <strong>£30,000</strong>, you pay about <strong>£38</strong> a month</li>
+                  <li>If you earn <strong>£40,000</strong>, you pay about <strong>£113</strong> a month</li>  
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <button class="accordion-btn" type="button">It's taken automatically from your salary</button>
+              <div class="accordion-content">
+                <p>Repayments are normally collected through your salary, like tax and National Insurance.</p>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <button class="accordion-btn" type="button">The loan is written off after 40 years</button>
+              <div class="accordion-content">
+                <p>If you haven't repaid the full loan after 40 years, the remaining balance is written off.</p>
+                <p>This means many graduates — especially those in lower-earning careers — will never repay the full amount.</p>
+                <p>This is very different from credit card debt or a bank loan, where the full amount is always due.</p>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <button class="accordion-btn" type="button">It doesn't affect your credit score</button>
+              <div class="accordion-content">
+                <p>Your student loan doesn't appear on your credit file in the same way a commercial loan would.</p>
+                <p> Mortgage lenders will consider your monthly repayments as part of affordability checks, but the loan itself is not treated as standard debt.</p>
+              </div>
+          </div>
+            <div class="accordion-item">
+              <button class="accordion-btn" type="button">Interest is linked to inflation and isn't fixed</button>
+              <div class="accordion-content">
+                <p>Interest is added to your loan, but it works differently to a credit card or bank loans.</p>
+                <p>The rate is based on the Retail Price Index (RPI) - a measure of inflation - so it rises and falls with the cost of living, rather than being set by a bank.</p>
+                <p><b>While you're studying</b>, interest is charged at RPI plus 3%.</p>
+                <p><b>Once you've left your course</b>, the rate depends on what you earn:</p>
+                <ul class="govuk-list govuk-list--bullet">
+                  <li>If you earn below the repayment threshold (£25,000), interest is charged at RPI only</li>
+                  <li>If you earn above the threshold, interest is charged at RPI plus 3%</li>
+                  <li>If you earn somewhere in between, the rate is somewhere between the two</li>
+                </ul>
+                <p><b>This doesn't change your monthly repayments.</b> You always repay 9% of what you earn above the threshold. The interest rate affects your overall balance, not how much you pay each month</p>
+                <p>And remember, if the loan isn't fully repaid after 40 years, whatever is left is written off.</p>
+              </div>
+            </div>
       </div>
 
+          <div class="page-nav"></div>
+        </div>
+
+        <div class="step-page" id="step-get-an-estimate" data-step-title="Check what student finance you could get">
+          <div class="cta-panel">
+            <h3 class="govuk-heading-m" id="get-an-estimate">Check what student finance you could get</h3>
+            <p>Use the student finance checker to see how much support you could get based on your circumstances.</p>
+            <a href="#" class="govuk-button">Start ></a>
+          </div>
+
+          <div class="page-nav"></div>
+        </div>
+
+      </div>
     </div>
   </div>
 
-<script>
-  const stories = [
-    { id:5, name:"Amara", age:19, location:"Birmingham", course:"Computer Science, Aston University", living:"Living in halls, first year, first in her family to go to University", colour:"#54319F", tags:["first-gen","living-away"], hasVideo:true, video:true, tagLabels:["Living away"], quote:"The first time I looked at student finance online I closed the tab. It felt like it wasn't made for people like me. I'm glad I went back.", background:"Amara's family are originally from Ghana. Her parents worked hard to support her education but had no experience of the UK higher education system. She found the official guidance confusing and initially relied on YouTube — some of which was inaccurate.", discovery:"Her sixth form ran a student finance session with a university outreach worker. That was the first time she heard it explained in a way that felt accessible and meant for her.", surprise:"She didn't know about the Disabled Students' Allowance, which she later applied for to support her with a processing difficulty. She also hadn't realised her household income might qualify her for a higher maintenance loan.", figured_out:"How to budget between loan payment dates — she uses a simple system with her bank. She also learnt to read her payment schedule so she wasn't caught out mid-term.", advice:"Find a human being who can explain it to you — a college adviser, a university open day, even a phone call with Student Finance England. Reading it alone online is really hard." },
-    { id:1, name:"Deon", age:18, location:"Brixton, London", course:"Music Production, BIMM London", living:"Living with parents, first in his family to go to University", colour:"#CA357C", tags:["living-at-home","first-gen"], tagLabels:["Living with parents"], quote:"Living at home saved me thousands. I don't feel like I'm missing out — I've got my own space and I'm not panicking about rent.", background:"Deon's parents are both from Jamaica and neither attended university in the UK. The family assumed university meant moving out and racking up debt. Deon challenged that assumption by doing his own research.", discovery:"He realised his maintenance loan would be lower living at home — but so would his costs. He ran the numbers and found it made more financial sense than halls.", surprise:"He didn't expect that London weighting exists — students in London can receive higher maintenance support because costs are higher. He also didn't realise he could appeal his assessment if household income changed mid-year.", figured_out:"How to explain the loan system to his parents, who were terrified of debt. He showed them the income threshold before repayments kick in and that changed everything.", advice:"Don't assume living at home is a compromise. For a lot of people it's the smartest financial decision you can make." },
-    { id:4, name:"Jamie", age:24, location:"Rural Shropshire", course:"Agricultural Engineering HNC, Walford and North Shropshire College", living:"Living with parents, 40-minute commute", colour:"#11875A", tags:["further-education","living-at-home"], tagLabels:["Further education","Living with parents"], quote:"I didn't think student finance applied to college courses. Turns out it does — and it made a real difference.", background:"Jamie left school at 16 and worked on the family farm before deciding to formalise his skills with a qualification. He assumed student finance was only for university students and almost didn't look into it.", discovery:"A college adviser told him that HNC and HND courses at further education colleges can qualify for student finance support. He applied late but still received funding.", surprise:"He was surprised that the maintenance loan was available for certain further education routes, and that there was additional discretionary support for students in rural areas with high travel costs.", figured_out:"How to fit study around farm work — he negotiated a flexible timetable with the college. He also applied for a discretionary bursary which covered some of his travel costs.", advice:"If you're doing a vocational or college-based qualification, don't assume student finance isn't for you. Check first — it's worth the phone call." },
-    { id:2, name:"Caitlin", age:21, location:"Inverness", course:"Social Work, University of Stirling", living:"Private flat, shared with two others", colour:"#158187", tags:["care-experienced","living-away"], tagLabels:["Care experienced","Living away"], hasVideo:true, video:true, quote:"There's extra support out there specifically for care-experienced students. I just wish someone had told me earlier.", background:"Caitlin was in foster care from age 11 and moved between several placements before leaving care at 18. She had no family support network and assumed university simply wasn't an option financially.", discovery:"A leaving care worker mentioned a bursary scheme. That was the first time university felt possible. She also found the Care Leavers' Bursary through her university's widening access team.", surprise:"The amount of support specifically for care leavers — from both the university and additional government funding — was far more than she'd expected. She also qualified for the full maintenance loan as an independent student.", figured_out:"Navigating university admin with no parent to call. She built a network of support workers, a personal tutor, and other care-experienced students she found through a university society.", advice:"Tell your university you're care-experienced as early as possible. There's dedicated support and it's worth accessing all of it." },
-    { id:0, name:"Leila", age:19, location:"Sheffield", course:"Nursing, Sheffield Hallam University", living:"Student halls, first year, first in her family to go to University", colour:"#1D70B8", tags:["first-gen","living-away"], tagLabels:["Living away"], quote:"I nearly didn't apply because I thought I'd owe £50,000 the day I finished. That's not how it works at all.", background:"Leila grew up in Sheffield with her mum and younger sister. Neither of her parents went to university and she had no one to ask about how it worked. She found out about student finance mostly through TikTok — which turned out to be full of misinformation.", discovery:"A careers teacher pointed her at the Student Finance England website in year 12. Before that, she'd assumed university was only for people whose families already knew the system.", surprise:"The biggest shock was finding out repayment is tied to what you earn — not a fixed monthly bill. She'd been imagining bailiffs. The reality was completely different. She also didn't know about the NHS Learning Support Fund until a friend mentioned it mid-application.", figured_out:"How to budget her maintenance loan across the term rather than spending it all in freshers' week. She now splits it into monthly amounts herself using a spreadsheet.", advice:"Look at the actual repayment terms before you make any decisions based on the debt. The numbers people share on social media are almost always wrong." },
-    { id:3, name:"Priya", age:20, location:"Leicester", course:"Accounting and Finance, De Montfort University", living:"Living with parents", colour:"#99704A", tags:["living-at-home"], tagLabels:["Living with parents"], quote:"My parents thought I'd be paying back my loan like a credit card. Once I explained the threshold, they actually encouraged me to go.", background:"Priya's parents run a small business in Leicester and were deeply worried about debt. The family had a lot of conversations about whether university was worth it before Priya looked into how the repayment system actually works.", discovery:"She found the Student Finance calculator and spent an evening going through different scenarios with her parents. It turned a tense conversation into a practical one.", surprise:"She hadn't realised the loan is written off after 30 years if unpaid — and that the repayment amount is genuinely linked to earnings, not the total borrowed. That reframing changed everything for her family.", figured_out:"How to manage a part-time job alongside full-time study without it affecting her loan assessment. She also figured out the best time to apply so her first payment arrived before term started.", advice:"Sit down with your family and go through the repayment terms together. It's much less scary when you see the actual numbers." },
-    { id:6, name:"Tom", age:22, location:"Bristol", course:"Journalism, UWE Bristol", living:"Private flat, living alone", colour:"#F47738", tags:["living-away","part-time"], tagLabels:["Living away","Part-time work"], quote:"I work 20 hours a week alongside my degree. It's tough but it means I'm not solely dependent on my loan.", background:"Tom moved to Bristol from a small town in Somerset. His parents are separated and the household income assessment was complicated — his dad was uncooperative about providing financial information.", discovery:"He found out there's a process for applying as an independent student if a parent doesn't engage. It took longer but he got there.", surprise:"How much private rent in Bristol eats into the maintenance loan. He hadn't factored in the gap between what the loan covers and what rent actually costs — he picked up part-time work quickly but wishes he'd planned for it from the start.", figured_out:"His rights when his landlord tried to withhold his deposit. The university's housing advice service helped him get it back. He also learnt how to declare part-time income correctly so it didn't affect his loan.", advice:"Budget for a gap between your maintenance loan and your actual rent before you commit to a property. And use your university's support services — they're free and they genuinely help." },
-    { id:7, name:"Niamh", age:29, location:"Manchester", course:"Early Years Education (part-time), Manchester Metropolitan University", living:"Living at home with partner and daughter", colour:"#CA3535", tags:["part-time","mature"], tagLabels:["Part-time study","Mature student"], quote:"I thought it was too late. I'm nearly 30 with a child. But the support for parents going back into education is better than I expected.", background:"Niamh left school at 17 and worked in childcare for a decade before deciding she wanted a formal qualification to progress. She assumed student finance was only for school leavers going straight to university.", discovery:"She spoke to an adviser at the college who explained the Childcare Grant and the Parents' Learning Allowance — two forms of support she had no idea existed.", surprise:"The Childcare Grant covered a significant portion of her nursery costs during term time. She also didn't know she could apply for a maintenance loan as a part-time student, though at a lower rate than full-time.", figured_out:"How to structure her study schedule around her daughter's school day. She also learnt how to reapply for funding year on year and what changes in circumstances she needed to report.", advice:"If you're a parent thinking about going back into education, look at the Childcare Grant and Parents' Learning Allowance specifically. Most people don't know they exist." }
-  ];
+  <script>
+    const tabButtons = document.querySelectorAll(".tab-btn");
+    const tabPanels = document.querySelectorAll(".tab-panel");
 
-  let activeFilter = "all";
-  let filteredStories = [...stories];
-  let currentIndex = 0;
+    tabButtons.forEach(button => {
+      button.addEventListener("click", () => {
+        const tab = button.dataset.tab;
 
-  function escapeHtml(str){
-    return String(str)
-      .replaceAll("&","&amp;")
-      .replaceAll("<","&lt;")
-      .replaceAll(">","&gt;")
-      .replaceAll('"',"&quot;")
-      .replaceAll("'","&#039;");
-  }
+        tabButtons.forEach(btn => {
+          btn.classList.remove("active");
+          btn.setAttribute("aria-selected", "false");
+        });
 
-  function tagPills(labels, colour){
-    return labels.map(l => `<span class="tag" style="background:${colour}">${escapeHtml(l)}</span>`).join("");
-  }
+        tabPanels.forEach(panel => panel.classList.remove("active"));
 
-  function render(){
-    const list = document.getElementById("list");
-    const empty = document.getElementById("emptyState");
-    const resultsCount = document.getElementById("resultsCount");
-
-    filteredStories = activeFilter === "all" ? [...stories] : stories.filter(s => s.tags.includes(activeFilter));
-    resultsCount.textContent = `${filteredStories.length} stor${filteredStories.length === 1 ? "y" : "ies"}`;
-
-    list.innerHTML = "";
-    if(!filteredStories.length){
-      empty.classList.add("show");
-      return;
-    }
-    empty.classList.remove("show");
-
-    filteredStories.forEach((s, idx) => {
-      const btn = document.createElement("button");
-      btn.className = "card";
-      btn.type = "button";
-      btn.setAttribute("aria-label", `Read ${s.name}'s story`);
-      btn.innerHTML = `
-        <div class="card-band" style="background:${s.colour}"></div>
-        <div class="card-inner">
-          <div class="avatar" style="background:${s.colour}">${escapeHtml(s.name[0])}</div>
-          <div class="meta">
-            <p class="name">${escapeHtml(s.name)}, ${s.age}</p>
-            <p class="details">${escapeHtml(s.location)}<br>${escapeHtml(s.course.split(",")[0])} · ${escapeHtml(s.living)}</p>
-            <div class="tags">${tagPills(s.tagLabels, s.colour)}</div>
-            <p class="quote">${escapeHtml(s.quote)}</p>
-          </div>
-        </div>
-        <div class="card-footer">
-          <span class="readlink">Read story</span>
-          ${s.hasVideo ? `<span class="badge">Video</span>` : ``}
-        </div>
-      `;
-      btn.addEventListener("click", () => openPanel(idx));
-      list.appendChild(btn);
+        button.classList.add("active");
+        button.setAttribute("aria-selected", "true");
+        document.getElementById(`tab-${tab}`).classList.add("active");
+      });
     });
-  }
 
-  function openPanel(idx){
-    currentIndex = idx;
-    const s = filteredStories[idx];
+    const accordionButtons = document.querySelectorAll(".accordion-btn");
 
-    document.getElementById("panelBand").style.background = s.colour;
-    const av = document.getElementById("panelAvatar");
-    av.style.background = s.colour;
-    av.textContent = s.name[0];
+    accordionButtons.forEach(button => {
+      button.addEventListener("click", () => {
+        button.classList.toggle("open");
+        const content = button.nextElementSibling;
+        content.classList.toggle("open");
+      });
+    });
 
-    document.getElementById("panelName").textContent = `${s.name}, ${s.age}`;
-    document.getElementById("panelMeta").innerHTML = `${escapeHtml(s.location)}<br>${escapeHtml(s.course)}<br>${escapeHtml(s.living)}`;
-    document.getElementById("panelTags").innerHTML = tagPills(s.tagLabels, s.colour);
+    const stepOrder = [
+      "overview",
+      "what-youll-need-to-pay-for",
+      "estimated-monthly-costs",
+      "how-students-cover-costs",
+      "will-it-be-enough",
+      "what-support-is-available",
+      "get-an-estimate",
+      "how-repayment-works"
+    ];
 
-    document.getElementById("panelBody").innerHTML = `
-      <div class="highlight"><p>${escapeHtml(s.quote)}</p></div>
+    const stepPages = document.querySelectorAll(".step-page");
+    const contentsLinks = document.querySelectorAll("#contentsList a");
 
-      <div class="section">
-        <span class="label">Background</span>
-        <p>${escapeHtml(s.background)}</p>
-      </div>
+    function showStep(stepId, updateHash = true) {
+      stepPages.forEach(page => page.classList.remove("active"));
+      const activePage = document.getElementById(`step-${stepId}`);
+      if (activePage) {
+        activePage.classList.add("active");
+      }
 
-      <div class="section">
-        <span class="label">How ${escapeHtml(s.name)} found out about student finance</span>
-        <p>${escapeHtml(s.discovery)}</p>
-      </div>
+      contentsLinks.forEach(link => {
+        link.classList.remove("current");
+        if (link.dataset.step === stepId) {
+          link.classList.add("current");
+        }
+      });
 
-      <div class="section">
-        <span class="label">What surprised ${escapeHtml(s.name)} most</span>
-        <p>${escapeHtml(s.surprise)}</p>
-      </div>
+      const phone = document.querySelector(".phone");
+      const phoneBody = document.querySelector(".phone-body");
+      if (phone) phone.scrollTop = 0;
+      if (phoneBody) phoneBody.scrollTop = 0;
 
-      <div class="section">
-        <span class="label">Things ${escapeHtml(s.name)} had to figure out</span>
-        <p>${escapeHtml(s.figured_out)}</p>
-      </div>
+      if (updateHash) {
+        try { history.replaceState(null, "", `#${stepId}`); } catch(e) {}
+      }
 
-      <div class="section">
-        <span class="label">What ${escapeHtml(s.name)} would tell someone in the same situation</span>
-        <p class="advice" style="border-left-color:${s.colour}">${escapeHtml(s.advice)}</p>
-      </div>
-      
-      ${s.video ? `
-        <div class="video-box">
-           <div class="video-thumb">
-             <span class="play-button"></span>
-           </div>
-           <p class="video-caption">Watch their story
-        </div>
-      ` : ""}
-      `;
+      renderStepNav(stepId);
+    }
 
-    document.getElementById("prevBtn").disabled = idx === 0;
-    document.getElementById("nextBtn").disabled = idx === filteredStories.length - 1;
-    document.getElementById("panelProgress").textContent = `Story ${idx + 1} of ${filteredStories.length}`;
+    function renderStepNav(currentStepId) {
+      const currentIndex = stepOrder.indexOf(currentStepId);
+      const currentPage = document.getElementById(`step-${currentStepId}`);
+      if (!currentPage) return;
 
-    document.getElementById("overlay").classList.add("open");
-    document.getElementById("closeBtn").focus();
-  }
+      const nav = currentPage.querySelector(".page-nav");
+      if (!nav) return;
 
-  function closePanel(){
-    document.getElementById("overlay").classList.remove("open");
-  }
+      let html = '<div class="step-nav">';
 
-  document.getElementById("closeBtn").addEventListener("click", closePanel);
-  document.getElementById("overlay").addEventListener("click", (e) => {
-    if(e.target.id === "overlay") closePanel();
-  });
+      if (currentIndex > 0) {
+        const prevId = stepOrder[currentIndex - 1];
+        const prevTitle = document.getElementById(`step-${prevId}`).dataset.stepTitle;
+        html += `
+          <a href="#${prevId}" class="step-nav-link" data-go-step="${prevId}">
+            <span class="step-nav-arrow">←</span>
+            <span class="step-nav-text">
+              <span class="step-nav-label">Previous</span>
+              <span class="step-nav-title">${prevTitle}</span>
+            </span>
+          </a>
+        `;
+      }
 
-  document.getElementById("prevBtn").addEventListener("click", () => {
-    if(currentIndex > 0) openPanel(currentIndex - 1);
-  });
-  document.getElementById("nextBtn").addEventListener("click", () => {
-    if(currentIndex < filteredStories.length - 1) openPanel(currentIndex + 1);
-  });
+      if (currentIndex < stepOrder.length - 1) {
+        const nextId = stepOrder[currentIndex + 1];
+        const nextTitle = document.getElementById(`step-${nextId}`).dataset.stepTitle;
+        html += `
+          <a href="#${nextId}" class="step-nav-link" data-go-step="${nextId}">
+            <span class="step-nav-arrow">→</span>
+            <span class="step-nav-text">
+              <span class="step-nav-label">Next</span>
+              <span class="step-nav-title">${nextTitle}</span>
+            </span>
+          </a>
+        `;
+      }
 
-  document.addEventListener("keydown", (e) => {
-    const overlayOpen = document.getElementById("overlay").classList.contains("open");
-    if(e.key === "Escape" && overlayOpen) closePanel();
-    if(overlayOpen && e.key === "ArrowLeft") document.getElementById("prevBtn").click();
-    if(overlayOpen && e.key === "ArrowRight") document.getElementById("nextBtn").click();
-  });
+      html += '</div>';
+      nav.innerHTML = html;
 
-  document.getElementById("filterGroup").addEventListener("click", (e) => {
-    if(!e.target.classList.contains("chip")) return;
-    document.querySelectorAll(".chip").forEach(b => b.setAttribute("aria-pressed","false"));
-    e.target.setAttribute("aria-pressed","true");
-    activeFilter = e.target.dataset.filter;
-    render();
-  });
+      nav.querySelectorAll("[data-go-step]").forEach(link => {
+        link.addEventListener("click", (e) => {
+          e.preventDefault();
+          showStep(link.dataset.goStep);
+        });
+      });
+    }
 
-  render();
-</script>
+    contentsLinks.forEach(link => {
+      link.addEventListener("click", (e) => {
+        e.preventDefault();
+        showStep(link.dataset.step);
+      });
+    });
+
+    const initialHash = window.location.hash.replace("#", "");
+    if (stepOrder.includes(initialHash)) {
+      showStep(initialHash, false);
+    } else {
+      showStep("overview", false);
+    }
+
+    // ===== CHECK IF YOU CAN AFFORD TO STUDY =====
+    (function() {
+      var situations = {
+        'halls-out': { loanBand:'out', accom:600, food:185, transport:45, note:'Typical halls rent outside London' },
+        'halls-lon': { loanBand:'lon', accom:1050, food:220, transport:120, note:'Typical halls rent in London' },
+        'private-out': { loanBand:'out', accom:520, food:185, transport:50, note:'Your share of rent in a shared house, outside London' },
+        'private-lon': { loanBand:'lon', accom:980, food:220, transport:120, note:'Your share of rent in a shared house, London' },
+        'home': { loanBand:'home', accom:120, food:185, transport:65, note:'Typical contribution to household costs' }
+      };
+
+      // 2025/26 confirmed GOV.UK rates (monthly = annual / 9)
+      // 2026/27 estimated ~3.5% uplift
+      // Income bands: low = under £25k, mid = ~£35k, high = ~£52k, top = £60k+
+      var loanRates = {
+        '2526': {
+          out: { low:1171, mid:911, high:670, top:530 },
+          lon: { low:1529, mid:1240, high:940, top:761 },
+          home: { low:987, mid:726, high:520, top:434 }
+        },
+        '2627': {
+          out: { low:1212, mid:943, high:693, top:549 },
+          lon: { low:1582, mid:1284, high:973, top:787 },
+          home: { low:1021, mid:751, high:538, top:449 }
+        }
+      };
+
+      var currentLoan = 911;
+      var yearKey = '2526';
+      var isIndependent = false;
+      var debounce;
+
+      function fmt(n) { return '£' + Math.round(Math.abs(n)).toLocaleString(); }
+
+      function getWork() {
+        var el = document.getElementById('wibeWork');
+        return el ? (parseFloat(el.value) || 0) : 0;
+      }
+
+      function getTotal() {
+        var ids = ['wibeAccom','wibeFood','wibeTransport','wibePhone','wibeCourse'];
+        return ids.reduce(function(s, id) {
+          var el = document.getElementById(id);
+          return s + (el ? (parseFloat(el.value) || 0) : 0);
+        }, 0);
+      }
+
+      // Work out if user qualifies as independent student
+      function checkIndependent() {
+        var status = document.getElementById('wibeStatus') ? document.getElementById('wibeStatus').value : 'dependent';
+        isIndependent = (status === 'independent');
+        return isIndependent;
+      }
+
+      // Update income label and hint based on independent status
+      function updateIncomeLabel() {
+        var label = document.getElementById('wibeIncomeLabel');
+        var hint = document.getElementById('wibeIncomeHint');
+        if (isIndependent) {
+          if (label) label.textContent = 'Your own income (and your partner\'s if applicable)';
+          if (hint) hint.textContent = 'As an independent student, your loan is based on your own income — not your parents\'. Include your partner\'s income if you live together and you are 25 or over.';
+        } else {
+          if (label) label.textContent = 'Household income';
+          if (hint) hint.textContent = 'This is the total income of the people you live with — usually your parents or partner. If you are not sure, we will use the average.';
+        }
+      }
+
+      function wibeAboutUpdate() {
+        checkIndependent();
+        var note = document.getElementById('wibeIndependentNote');
+        if (note) note.className = isIndependent ? 'wibe-independent-note show' : 'wibe-independent-note';
+        updateIncomeLabel();
+        update();
+      }
+
+      function calc() {
+        var total = getTotal();
+        var work = getWork();
+        var diff = (currentLoan + work) - total;
+
+        // Update loan display — shows base loan only, work shown separately
+        var loanEl = document.getElementById('wibeLoanAmt');
+        if (loanEl) loanEl.textContent = fmt(currentLoan);
+
+        // Show/hide paid work row
+        var workRow = document.getElementById('wibeWorkRow');
+        var workAmt = document.getElementById('wibeWorkAmt');
+        if (workRow) workRow.className = work > 0 ? 'wibe-work-line show' : 'wibe-work-line';
+        if (workAmt) workAmt.textContent = fmt(work);
+
+        // Update cost totals
+        var costTotalEl = document.getElementById('wibeCostTotal');
+        var totalDisplayEl = document.getElementById('wibeTotalDisplay');
+        if (costTotalEl) costTotalEl.textContent = fmt(total);
+        if (totalDisplayEl) totalDisplayEl.textContent = fmt(total) + '/mo';
+
+        // Update verdict
+        var verdictEl = document.getElementById('wibeVerdict');
+        var headingEl = document.getElementById('wibeVerdictHeading');
+        var labelEl = document.getElementById('wibeVerdictLabel');
+        var shortfallBody = document.getElementById('wibeVerdictBodyShortfall');
+        var surplusBody = document.getElementById('wibeVerdictBodySurplus');
+        if (!verdictEl) return;
+
+        if (diff < 0) {
+          verdictEl.className = 'wibe-verdict shortfall';
+          if (labelEl) labelEl.textContent = 'Your estimate shows a gap of';
+          if (headingEl) headingEl.textContent = fmt(Math.abs(diff)) + '/month';
+          if (shortfallBody) shortfallBody.style.display = '';
+          if (surplusBody) surplusBody.style.display = 'none';
+        } else if (diff === 0) {
+          verdictEl.className = 'wibe-verdict surplus';
+          if (labelEl) labelEl.textContent = 'Breaking even';
+          if (headingEl) headingEl.textContent = '—';
+          if (shortfallBody) shortfallBody.style.display = 'none';
+          if (surplusBody) surplusBody.style.display = '';
+        } else {
+          verdictEl.className = 'wibe-verdict surplus';
+          if (labelEl) labelEl.textContent = 'Your estimate shows a surplus of';
+          if (headingEl) headingEl.textContent = fmt(diff) + '/month';
+          if (shortfallBody) shortfallBody.style.display = 'none';
+          if (surplusBody) surplusBody.style.display = '';
+        }
+      }
+
+      function update() {
+        var sitKey = document.getElementById('wibeSituation') ? document.getElementById('wibeSituation').value : 'halls-out';
+        var yearEl = document.getElementById('wibeYear');
+        yearKey = yearEl ? yearEl.value : '2526';
+        var incomeEl = document.getElementById('wibeIncome');
+        var income = incomeEl ? incomeEl.value : 'mid';
+        if (!income) income = 'mid';
+
+        var sit = situations[sitKey] || situations['halls-out'];
+        var yearRates = loanRates[yearKey] || loanRates['2526'];
+        currentLoan = yearRates[sit.loanBand][income];
+
+        var accomEl = document.getElementById('wibeAccom');
+        var foodEl = document.getElementById('wibeFood');
+        var transportEl = document.getElementById('wibeTransport');
+        var noteEl = document.getElementById('wibeAccomNote');
+        if (accomEl) accomEl.value = sit.accom;
+        if (foodEl) foodEl.value = sit.food;
+        if (transportEl) transportEl.value = sit.transport;
+        if (noteEl) noteEl.textContent = sit.note;
+
+        calc();
+      }
+
+      function debouncedCalc() {
+        clearTimeout(debounce);
+        debounce = setTimeout(calc, 500);
+      }
+
+      // Wire up selects
+      ['wibeSituation','wibeYear','wibeIncome'].forEach(function(id) {
+        var el = document.getElementById(id);
+        if (el) el.addEventListener('change', update);
+      });
+
+      // Status select triggers independent check + update
+      var statusEl = document.getElementById('wibeStatus');
+      if (statusEl) statusEl.addEventListener('change', wibeAboutUpdate);
+
+      // Wire up number inputs
+      ['wibeAccom','wibeFood','wibeTransport','wibePhone','wibeCourse','wibeWork'].forEach(function(id) {
+        var el = document.getElementById(id);
+        if (el) {
+          el.addEventListener('input', debouncedCalc);
+          el.addEventListener('change', calc);
+        }
+      });
+
+      // Expose wibeAboutUpdate globally for onchange handlers
+      window.wibeAboutUpdate = wibeAboutUpdate;
+
+      // Init
+      update();
+    })();
+  </script>
 </body>
 </html>
