@@ -643,35 +643,67 @@
    VIEW MODE TOGGLE LOGIC
    ================================================== */
 
-(function () {
-  const body = document.body;
-  const buttons = document.querySelectorAll('.view-btn');
+/* ===============================
+   DESKTOP / MOBILE VIEW TOGGLE
+   =============================== */
 
-  function setView(mode) {
-    body.classList.toggle('desktop-mode', mode === 'desktop');
+.view-toggle{
+  position: fixed;
+  top: 12px;
+  right: 12px;
+  z-index: 9999;
+  display: flex;
+  gap: 6px;
+}
 
-    buttons.forEach(btn => {
-      btn.classList.toggle('active', btn.dataset.view === mode);
-    });
+.view-btn{
+  font-family: var(--gds-font);
+  font-size: 14px;
+  font-weight: 700;
+  padding: 6px 10px;
+  border: 2px solid #0b0c0c;
+  background: #ffffff;
+  cursor: pointer;
+}
+
+.view-btn.active{
+  background: #0b0c0c;
+  color: #ffffff;
+}
+
+/* Desktop = remove phone chrome only */
+body.desktop-mode .phone-shell{
+  max-width: 1200px;
+  margin: 32px auto;
+  padding: 0 24px;
+}
+
+body.desktop-mode .phone{
+  border: none;
+  border-radius: 0;
+  height: auto;
+  box-shadow: none;
+  overflow: visible;
+}
+
+body.desktop-mode .phone-btn{
+  display: none;
+}
+
+/* Responsive safety: small screens always mobile */
+@media (max-width: 480px){
+  body.desktop-mode .phone-shell,
+  body.desktop-mode .phone{
+    all: revert;
   }
-
-  buttons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      setView(btn.dataset.view);
-    });
-  });
-
-  // Default to desktop view
-  setView('desktop');
-})();
-``
+}
   </style>
 </head>
 
 <body>
   
-<!-- VIEW MODE TOGGLE (desktop / mobile) -->
-<div class="view-toggle" aria-label="Preview mode">
+
+<div class="view-toggle">
   <button type="button" class="view-btn active" data-view="desktop">
     Desktop view
   </button>
@@ -679,6 +711,7 @@
     Mobile view
   </button>
 </div>
+
 
   <div class="phone-shell">
     <div class="phone-btn power"></div>
@@ -1593,6 +1626,34 @@
       // Init
       update();
     })();
+
+    /* ===============================
+   VIEW MODE TOGGLE LOGIC
+   =============================== */
+
+(function () {
+  const body = document.body;
+  const buttons = document.querySelectorAll('.view-btn');
+
+  function setView(view){
+    body.classList.toggle('desktop-mode', view === 'desktop');
+    buttons.forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.view === view);
+    });
+  }
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => setView(btn.dataset.view));
+  });
+
+  // Default to desktop
+  setView('desktop');
+
+  // Force mobile on genuinely small screens
+  if (window.innerWidth <= 480){
+    setView('mobile');
+  }
+})();
   </script>
 </body>
 </html>
