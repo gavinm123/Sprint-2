@@ -812,7 +812,7 @@ body.desktop-mode .phone-btn{
         <div class="step-page" id="step-estimated-monthly-costs" data-step-title="Estimated monthly costs">
           <h2 class="govuk-heading-m" id="estimated-monthly-costs">Estimated monthly costs</h2>
           <p class="govuk-body">
-            These figures are estimates based on typical student spending in England. Costs vary a lot by location, especially in London.
+            These figures are estimates based on typical student spending in England. Costs vary a lot by location, especially in London. Outside London, total monthly costs are broadly similar across most cities — the difference between, for example, Manchester and Birmingham is typically around £100 to £200 a month. London is the main exception, where costs are significantly higher.
           </p>
 
           <div class="tab-bar" role="tablist" aria-label="Living situation tabs">
@@ -993,7 +993,7 @@ body.desktop-mode .phone-btn{
             <li>savings or other income</li>
           </ul>
           <p class="govuk-body">What works depends on your situation.</p>
-          <p class="govuk-body">If your income and costs are close, students often adjust by:</p>
+          <p class="govuk-body">When the money you have coming in is only just enough to cover your costs, it can be hard to deal with higher bills or unexpected expenses.  Students often adjust by:</p>
           <ul class="govuk-list govuk-list--bullet">
             <li>working some hours during term time</li>
             <li>choosing different accommodation</li>
@@ -1131,10 +1131,22 @@ body.desktop-mode .phone-btn{
                 </div>
               </div>
               <div class="wibe-cost-row">
-                <label class="wibe-cost-label" for="wibePhone">Phone and personal</label>
+                <label class="wibe-cost-label" for="wibeBills">
+                  Other monthly bills
+                  <span class="wibe-cost-note">This could include items such as your phone and any subscriptions</span>
+                </label>
                 <div class="wibe-input-wrap">
                   <span class="wibe-prefix" aria-hidden="true">£</span>
-                  <input type="number" class="wibe-input" id="wibePhone" value="55" min="0" max="9999" aria-label="Phone and personal costs per month in pounds">
+                  <input type="number" class="wibe-input" id="wibeBills" value="70" min="0" max="9999" aria-label="Other monthly bills in pounds">
+                </div>
+              </div>
+              <div class="wibe-cost-row">
+                <label class="wibe-cost-label" for="wibeSocial">
+                  Social and lifestyle
+                </label>
+                <div class="wibe-input-wrap">
+                  <span class="wibe-prefix" aria-hidden="true">£</span>
+                  <input type="number" class="wibe-input" id="wibeSocial" value="40" min="0" max="9999" aria-label="Social and lifestyle costs per month in pounds">
                 </div>
               </div>
               <div class="wibe-cost-row">
@@ -1161,15 +1173,17 @@ body.desktop-mode .phone-btn{
               <p class="wibe-verdict-heading" id="wibeVerdictHeading">£9 a month</p>
             </div>
             <div class="wibe-verdict-body-zone" id="wibeVerdictBodyShortfall">
-              <span class="wibe-verdict-subhead">What this means💡</span>
+              <span class="wibe-verdict-subhead">What this means</span>
               <p class="wibe-verdict-body">Gaps of this size are common, especially in the first year. When you are new to managing your own money, this usually means there is very little spare money to deal with higher bills, travel, or costs you did not expect.</p>
               <p class="wibe-verdict-body">Some costs vary month to month, and others only come up a few times a year. This estimate does not include one-off or unexpected costs, such as deposits, travel home, or higher bills in winter. Having a buffer can help with this.</p>
+              <p class=wibe-verdict-body">Private rentals usually require a deposit (often 5 weeks' rent) upfront. Factor this into your planning before you commit.</p> 
               <p class="wibe-verdict-body">Use this estimate to help you plan how you would manage your costs, and to have conversations with family, partners or advisers about what support or changes might be needed.</p>
               <p class="wibe-disclaimer">Loan figures are estimates. Your actual amount depends on your household income assessment and the rates for your academic year.</p>
             </div>
             <div class="wibe-verdict-body-zone" id="wibeVerdictBodySurplus" style="display:none;">
-              <span class="wibe-verdict-subhead">What this means💡</span>
+              <span class="wibe-verdict-subhead">What this means</span>
               <p class="wibe-verdict-body">Your loan looks likely to cover your estimated costs. It is still worth keeping a small buffer for one-off or unexpected costs, such as deposits, travel home, or higher bills in winter.</p>
+              <p class=wibe-verdict-body">Private rentals usually require a deposit (often 5 weeks' rent) upfront. Factor this into your planning before you commit.</p>
               <p class="wibe-disclaimer">Loan figures are estimates. Your actual amount depends on your household income assessment and the rates for your academic year.</p>
             </div>
           </div>
@@ -1249,10 +1263,16 @@ body.desktop-mode .phone-btn{
                 <p>You only start repaying when you earn over <strong>£25,000 a year</strong> (for plan 5), and you <strong>repay 9%</strong> of whatever you earn.</p>
                 <p>For example:</p>
                 <ul class="govuk-list govuk-list--bullet">
-                  <li>If you earn under <strong>£25,000</strong>, you pay <strong>£0</strong></li>
-                  <li>If you earn <strong>£27,000</strong>, you pay about <strong>£15</strong> a month</li>
-                  <li>If you earn <strong>£30,000</strong>, you pay about <strong>£38</strong> a month</li>
-                  <li>If you earn <strong>£40,000</strong>, you pay about <strong>£113</strong> a month</li>  
+                  <li>If you earn under <strong>£25,000</strong>, you repay <strong>£0</strong></li>
+                  <li>If you earn <strong>£27,000</strong>, you repay about <strong>£15</strong> a month</li>
+                  <li>If you earn <strong>£40,000</strong>, you repay about <strong>£113</strong> a month</li>  
+                  <li>If you earn <strong>£70,000</strong>, you repay about <strong>£338</strong> a month</li>
+                  <li>If you earn <strong>£100,000</strong>, you repay about <strong>£563</strong> a month</li>
+                </ul>
+                <p><strong>How it's calculated</strong></p>
+                <p>Take your salary, subtract £25,000, then take 9% of what's left, and divide by 12 for your monthly amount.</p>
+                <p>For example, on a salary of <strong>£27,000</strong>:</p>
+                <p>£27,000 - £25,000 = £2,000 x 9% = £180 a year or <strong>£15 a month</strong>.</p>
               </div>
             </div>
 
@@ -1451,11 +1471,11 @@ body.desktop-mode .phone-btn{
     // ===== CHECK IF YOU CAN AFFORD TO STUDY =====
     (function() {
       var situations = {
-        'halls-out': { loanBand:'out', accom:600, food:185, transport:45, note:'Typical halls rent outside London' },
-        'halls-lon': { loanBand:'lon', accom:1050, food:220, transport:120, note:'Typical halls rent in London' },
-        'private-out': { loanBand:'out', accom:520, food:185, transport:50, note:'Your share of rent in a shared house, outside London' },
-        'private-lon': { loanBand:'lon', accom:980, food:220, transport:120, note:'Your share of rent in a shared house, London' },
-        'home': { loanBand:'home', accom:120, food:185, transport:65, note:'Typical contribution to household costs' }
+        'halls-out': { loanBand:'out', accom:600, food:185, transport:45, social:40, note:'Typical halls rent outside London' },
+        'halls-lon': { loanBand:'lon', accom:1050, food:220, transport:120, social:80, note:'Typical halls rent in London' },
+        'private-out': { loanBand:'out', accom:520, food:185, transport:50, social:40, note:'Your share of rent in a shared house, outside London' },
+        'private-lon': { loanBand:'lon', accom:980, food:220, transport:120, social:80, note:'Your share of rent in a shared house, London' },
+        'home': { loanBand:'home', accom:120, food:185, transport:65, social:40, note:'Typical contribution to household costs' }
       };
 
       // 2025/26 confirmed GOV.UK rates (monthly = annual / 9)
@@ -1487,7 +1507,7 @@ body.desktop-mode .phone-btn{
       }
 
       function getTotal() {
-        var ids = ['wibeAccom','wibeFood','wibeTransport','wibePhone','wibeCourse'];
+        var ids = ['wibeAccom','wibeFood','wibeTransport','wibeBills','wibeSocial','wibeCourse'];
         return ids.reduce(function(s, id) {
           var el = document.getElementById(id);
           return s + (el ? (parseFloat(el.value) || 0) : 0);
@@ -1587,10 +1607,12 @@ body.desktop-mode .phone-btn{
         var accomEl = document.getElementById('wibeAccom');
         var foodEl = document.getElementById('wibeFood');
         var transportEl = document.getElementById('wibeTransport');
+        var socialEl = document.getElementById('wibeSocial');
         var noteEl = document.getElementById('wibeAccomNote');
         if (accomEl) accomEl.value = sit.accom;
         if (foodEl) foodEl.value = sit.food;
         if (transportEl) transportEl.value = sit.transport;
+        if (socialEl) socialEl.value = sit.social;
         if (noteEl) noteEl.textContent = sit.note;
 
         calc();
@@ -1612,7 +1634,7 @@ body.desktop-mode .phone-btn{
       if (statusEl) statusEl.addEventListener('change', wibeAboutUpdate);
 
       // Wire up number inputs
-      ['wibeAccom','wibeFood','wibeTransport','wibePhone','wibeCourse','wibeWork'].forEach(function(id) {
+      ['wibeAccom','wibeFood','wibeTransport','wibeBills','wibeSocial','wibeCourse','wibeWork'].forEach(function(id) {
         var el = document.getElementById(id);
         if (el) {
           el.addEventListener('input', debouncedCalc);
