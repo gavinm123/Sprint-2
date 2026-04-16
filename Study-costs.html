@@ -561,7 +561,7 @@
     .wibe-sel-row { display:flex; flex-direction:column; gap:4px; }
     .wibe-select { width:100%; font-size:16px; padding:8px 10px; border:2px solid #0b0c0c; border-radius:4px; font-family:var(--gds-font); background:white; }
     .wibe-select:focus { outline:3px solid var(--gds-focus); outline-offset:0; }
-    .wibe-year-hint { font-size:16px; color:var(--gds-secondary); line-height:1.4; margin-top:1px; display:block; font-family:var(--gds-font) }
+    .wibe-year-hint { font-size:16px; color:var(--gds-secondary); line-height:1.4; margin-top:4px; margin-bottom:16px; display:block; font-family:var(--gds-font) }
     .wibe-work-input-wrap { display:flex; align-items:center; gap:4px; margin-top:4px; }
     .wibe-work-prefix { font-size:16px; font-weight:700; color:var(--gds-secondary); }
     .wibe-work-input { width:90px; font-size:16px; font-weight:700; padding:8px 10px; border:2px solid #0b0c0c; border-radius:4px; text-align:right; font-family:var(--gds-font); background:white; }
@@ -602,7 +602,7 @@
     .wibe-verdict.surplus .wibe-verdict-header { background:#0f7a52; }
     .wibe-verdict-header-label { font-size:16px; color:#ffffff; display:block; margin-bottom:2px; font-weight:600; }
     .wibe-verdict-heading { font-size:34px; font-weight:900; margin:0; color:#ffffff; line-height:1; }
-    .wibe-verdict-body-zone { padding:16px 18px; background:#f7996a; }
+    .wibe-verdict-body-zone { padding:16px 18px; background:transparent; }
     .wibe-verdict-subhead {margin-top: 0;margin-bottom: 10px;color: #0b0c0c;text-transform: none;letter-spacing: normal; display:block; font-weight:700; font-size:24px; }
     .wibe-verdict-body { font-size:16px; line-height:1.6; margin:0 0 10px; color:#ffffff; }
     .wibe-verdict-body:last-child { margin-bottom:0; }
@@ -625,7 +625,7 @@
     
 /* WHAT THIS MEANS → white background */
 .wibe-verdict-body-zone {
-  background: #ffffff;
+  background: #1d70b8;
 }
 
 /* Fix text contrast */
@@ -697,9 +697,51 @@ body.desktop-mode .phone-btn{
     all: revert;
   }
 }
+    /* ── Lånekassen-style calculator ─────────────────────── */
+    .lk-section { padding:20px 0 8px; border-bottom:1px solid #e5e5e5; display:none; }
+    .lk-section.show { display:block; }
+    .lk-section-title { font-size:19px; font-weight:700; color:#0b0c0c; margin:0 0 4px; }
+    .lk-radios { display:flex; flex-direction:column; gap:0; margin-bottom:8px; }
+    .lk-radio { display:flex; align-items:center; gap:14px; padding:8px 0; border:none; background:none; cursor:pointer; }
+    .lk-radio:hover .lk-radio-label { text-decoration:none; }
+    .lk-radio input[type="radio"] { appearance:none; -webkit-appearance:none; width:38px; height:38px; min-width:38px; border-radius:50%; border:2px solid #0b0c0c; cursor:pointer; background:white; flex-shrink:0; position:relative; }
+    .lk-radio input[type="radio"]:checked { border:none; background:#1d70b8; }
+    .lk-radio input[type="radio"]:checked::after { content:""; position:absolute; left:50%; top:50%; width:8px; height:14px; border:solid white; border-width:0 3px 3px 0; transform:translate(-60%, -60%) rotate(45deg); }
+    .lk-radio input[type="radio"]:focus { outline:3px solid #ffdd00; outline-offset:2px; }
+    .lk-radio-label { font-size:16px; color:#0b0c0c; line-height:1.3; }
+    .lk-result { background:#1d70b8; margin:24px -16px 0; padding:24px 20px 20px; display:none; }
+    .lk-result.show { display:block; }
+    .lk-result-amounts { display:flex; margin-bottom:20px; }
+    .lk-result-col { flex:1; }
+    .lk-result-col:first-child { padding-right:14px; margin-right:14px; border-right:1px solid rgba(255,255,255,.2); }
+    .lk-result-alabel { font-size:16px; color:#ffffff; display:block; margin-bottom:2px; font-weight:600;}
+    .lk-result-aval { font-size:40px; font-weight:900; color:#ffffff; display:block; line-height:1; }
+    .lk-result-aval.green { color:#85e0ab; }
+    .lk-result-aunit { font-size:16px; color:rgba(255,255,255,.7); display:block; margin-top:5px; }
+    .lk-result-divider { border:none; border-top:1px solid rgba(255,255,255,.2); margin:0 0 18px; }
+    .lk-result-label { font-size:16px; color:#ffffff; display:block; margin-bottom:3px; font-weight:600; }
+    .lk-result-val { font-size:52px; font-weight:900; color:white; display:block; line-height:1; margin-bottom:3px; }
+    .lk-result-unit { font-size:16px; color:rgba(255,255,255,.65); display:block; margin-bottom:14px; }
+
+    .lk-wtm-trigger { width:calc(100% + 32px); margin:0 -16px; background:#1d70b8; border:none; padding:14px 18px; display:none; justify-content:space-between; align-items:center; cursor:pointer; font-size:16px; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; color:#ffffff; border-left:5px; text-align:left; font-family:inherit; }
+    .lk-wtm-trigger.show { display:flex; }
+    .lk-wtm-body { display:none; background:white; border-left:5px; margin:0 -16px; padding:0 18px 16px; }
+    .lk-wtm-body.open { display:block; background: #ffffff; margin: 16px 0 0; padding: 0;color: #0b0c0c; display: block;
+}
+    .lk-wtm-body p { font-size:16px; color:#0b0c0c; line-height:1.6; margin:0 0 10px; }
+    .lk-wtm-body p:last-child { margin-bottom:0; }
+    .lk-costs-wrap { display:none; margin:20px -16px 0; }
+    .lk-costs-head { background:#f3f2f1; padding:10px 18px; font-size:16px; color:#505a5f; }
+    
+    
+.lk-wtm-body .gov-uk-heading-s {
+  color: #1a65a6; /* change this to whatever colour you want */
+}
+    /* ─────────────────────────────────────────────────────── */
+
   </style>
 </head>
-
+  
 <body>
   
 
@@ -750,7 +792,7 @@ body.desktop-mode .phone-btn{
           <li><a class="govuk-link" href="#what-youll-need-to-pay-for" data-step="what-youll-need-to-pay-for">What you'll need to pay for</a></li>
           <li><a class="govuk-link" href="#estimated-monthly-costs" data-step="estimated-monthly-costs">Estimated monthly costs</a></li>
           <li><a class="govuk-link" href="#how-students-cover-costs" data-step="how-students-cover-costs">How students usually cover their costs</a></li>
-          <li><a class="govuk-link" href="#will-it-be-enough" data-step="will-it-be-enough">Check if you can afford to study</a></li>
+          <li><a class="govuk-link" href="#will-it-be-enough" data-step="will-it-be-enough">Calculate your expenses</a></li>
           <li><a class="govuk-link" href="#what-support-is-available" data-step="what-support-is-available">What support is available</a></li>
           <li><a class="govuk-link" href="#get-an-estimate" data-step="get-an-estimate">Check what student finance you could get</a></li>
           <li><a class="govuk-link" href="#how-repayment-works" data-step="how-repayment-works">How repayment works</a></li>
@@ -812,7 +854,7 @@ body.desktop-mode .phone-btn{
         <div class="step-page" id="step-estimated-monthly-costs" data-step-title="Estimated monthly costs">
           <h2 class="govuk-heading-m" id="estimated-monthly-costs">Estimated monthly costs</h2>
           <p class="govuk-body">
-            These figures are estimates based on typical student spending in England. Costs vary a lot by location, especially in London. Outside London, total monthly costs are broadly similar across most cities — the difference between, for example, Manchester and Birmingham is typically around £100 to £200 a month. London is the main exception, where costs are significantly higher.
+            These figures are estimates based on typical student spending in England. Costs vary a lot by location, especially in London.
           </p>
 
           <div class="tab-bar" role="tablist" aria-label="Living situation tabs">
@@ -932,7 +974,7 @@ body.desktop-mode .phone-btn{
                 <span class="cost-note">Averaged over a term - use library where possible</span>
               </div>
               <div class="cost-row cost-total">
-                <span class="cost-total-value">Estimated total (outside of London)</span>
+                <span class="cost-total-value">fEstimated total (outside of London)</span>
                 <span class="cost-value">£700–£1,230</span>
                 <span class="cost-note">Excluding tuition fees</span>
               </div>
@@ -993,7 +1035,7 @@ body.desktop-mode .phone-btn{
             <li>savings or other income</li>
           </ul>
           <p class="govuk-body">What works depends on your situation.</p>
-          <p class="govuk-body">When the money you have coming in is only just enough to cover your costs, it can be hard to deal with higher bills or unexpected expenses.  Students often adjust by:</p>
+          <p class="govuk-body">When the money you have coming in is only just enough to cover your costs, it can be hard to deal with higher bills or unexpected expenses. Students often adjust by:</p>
           <ul class="govuk-list govuk-list--bullet">
             <li>working some hours during term time</li>
             <li>choosing different accommodation</li>
@@ -1003,9 +1045,9 @@ body.desktop-mode .phone-btn{
           <div class="page-nav"></div>
         </div>
 
-        <div class="step-page" id="step-will-it-be-enough" data-step-title="Check if you can afford to study">
-          <h2 class="govuk-heading-m" id="will-it-be-enough">Check if you can afford to study</h2>
-          <p class="govuk-body">Use this tool to compare your estimated maintenance loan with your estimated living costs while you study.</p>
+        <div class="step-page" id="step-will-it-be-enough" data-step-title="Calculate your expenses">
+          <h2 class="govuk-heading-m" id="will-it-be-enough">Calculate your expenses</h2>
+                    <p class="govuk-body">Use this tool to compare your estimated maintenance loan with your estimated living costs while you study.</p>
           <p class="govuk-body">You can explore different options and see how changes affect the comparison between your loan and your costs.</p>
           <p class="govuk-body">For example, you can try:</p>
           <ul class="govuk-list govuk-list--bullet">
@@ -1015,181 +1057,161 @@ body.desktop-mode .phone-btn{
           </ul>
           <p class="govuk-body">You can change any figure to match your plans.</p>
 
-          <!-- Zone 1: inputs on warm grey background -->
-          <div class="wibe-zone-inputs">
-            <div class="wibe-selectors" role="group" aria-label="Your situation">
-
-              <div class="wibe-sel-row">
-                <label class="govuk-heading-s" for="wibeSituation">Where will you live while studying?</label>
-                <span class="wibe-year-hint">This is where you expect to live for most of the academic year.</span>
-                <select class="wibe-select" id="wibeSituation">
-                  <option value="halls-out">University halls — outside London</option>
-                  <option value="halls-lon">University halls — London</option>
-                  <option value="private-out">Private rented (shared) — outside London</option>
-                  <option value="private-lon">Private rented (shared) — London</option>
-                  <option value="home">Living with parents or family</option>
-                </select>
-              </div>
-
-              <div class="wibe-sel-row">
-                <label class="govuk-heading-s" for="wibeYear">When will you start your course?</label>
-                <span class="wibe-year-hint">We use this to apply the correct loan rates. Loan rates are updated each February. If you are not sure yet, we’ll use the current year’s rates.</span>
-                <select class="wibe-select" id="wibeYear">
-                  <option value="2526" selected>Not sure yet</option>
-                  <option value="2526">2025 to 2026</option>
-                  <option value="2627">2026 to 2027</option>
-                </select>
-              </div>
-
-              <div class="wibe-sel-row">
-                <label class="govuk-heading-s" for="wibeStatus">Which option applies to you?</label>
-                <span class="wibe-year-hint" id="wibeStatusHint">This tells us whose income is used to work out your maintenance loan. For most students under 25, the loan is based on their parents’ income. If one of the other options applies, it is based on your own income.</span>
-                <select class="wibe-select" id="wibeStatus">
-                  <option value="dependent">I am under 25 and not married</option>
-                  <option value="independent">I am 25 or over</option>
-                  <option value="independent">I am married or in a civil partnership</option>
-                  <option value="independent">I have a child under 18 in my care</option>
-                  <option value="independent">I have supported myself for 3 or more years</option>
-                </select>
-              </div>
-
-              <div class="wibe-sel-row">
-                <label class="govuk-heading-s" for="wibeIncome" id="wibeIncomeLabel">Last year’s household income</label>
-                <span class="wibe-year-hint" id="wibeIncomeHint">This means the total income of your parents or your partner, if you have one. It does not include flatmates or other students you share rent with. If you are not sure, we’ll use an average figure.</span>
-                <select class="wibe-select" id="wibeIncome">
-                  <option value="mid" selected>Not sure</option>
-                  <option value="low">Under £25,000 a year</option>
-                  <option value="mid">£25,000 to £42,000 a year</option>
-                  <option value="high">£42,000 to £62,000 a year</option>
-                  <option value="top">Over £62,000 a year</option>
-                </select>
-              </div>
-
-              <div class="wibe-independent-note" id="wibeIndependentNote">
-                You are likely to be an <strong>independent student</strong> — your loan will be based on your own income, not your parents’. Independent students often receive a higher loan.
-              </div>
-
-              <div class="wibe-sel-row">
-                <label class="govuk-heading-s" for="wibeWork">Money from paid work each month</label>
-                <span class="wibe-year-hint">If you expect to get money from paid work during term time, enter a rough monthly amount. If you do not plan to work, leave this at £0. It’s OK if you’re unsure. Plans often change.</span>
-                <div class="wibe-work-input-wrap">
-                  <span class="wibe-work-prefix" aria-hidden="true">£</span>
-                  <input type="number" class="wibe-work-input" id="wibeWork" value="0" min="0" max="9999" aria-label="Monthly income from paid work in pounds">
-                </div>
-              </div>
-
+          <!-- Q1: Region -->
+          <div class="lk-section show" id="lkS1">
+            <p class="lk-section-title">Where do you plan to live while you study?</p>
+            <span class="wibe-year-hint">This is where you expect to live for most of the academic year.</span>
+            <div class="lk-radios" role="radiogroup">
+              <label class="lk-radio"><input type="radio" name="wibeRegion" value="london" onchange="lkNext('lkS2')"><span class="lk-radio-label">London and South East</span></label>
+              <label class="lk-radio"><input type="radio" name="wibeRegion" value="southwest" onchange="lkNext('lkS2')"><span class="lk-radio-label">South West (Bristol, Exeter)</span></label>
+              <label class="lk-radio"><input type="radio" name="wibeRegion" value="midlands" onchange="lkNext('lkS2')"><span class="lk-radio-label">Midlands (Birmingham, Nottingham)</span></label>
+              <label class="lk-radio"><input type="radio" name="wibeRegion" value="northwest" onchange="lkNext('lkS2')"><span class="lk-radio-label">North West (Manchester, Liverpool)</span></label>
+              <label class="lk-radio"><input type="radio" name="wibeRegion" value="yorkshire" onchange="lkNext('lkS2')"><span class="lk-radio-label">Yorkshire and North East (Leeds, Sheffield, Newcastle)</span></label>
             </div>
           </div>
 
-          <!-- Zone 2: blue chapter break -->
-          <div class="wibe-chapter-break">
-            <div class="wibe-chapter-amounts">
-              <div class="wibe-chapter-col">
-                <span class="wibe-chapter-amt-label">Your estimated maintenance loan</span>
-                <span class="wibe-chapter-amt-val green" id="wibeLoanAmt">£911</span>
-                <span class="wibe-chapter-amt-unit">per month</span>
-                <div class="wibe-work-line" id="wibeWorkRow">
-                  <span class="wibe-work-line-label">+ your paid work</span>
-                  <span class="wibe-work-line-val" id="wibeWorkAmt">£0</span>
-                  <span class="wibe-chapter-amt-unit">per month</span>
+          <!-- Q2: Living -->
+          <div class="lk-section" id="lkS2">
+            <p class="lk-section-title">Where what sort of accomodation?</p>
+            <div class="lk-radios" role="radiogroup">
+              <label class="lk-radio"><input type="radio" name="wibeLiving" value="halls" onchange="lkNext('lkS3')"><span class="lk-radio-label">University halls</span></label>
+              <label class="lk-radio"><input type="radio" name="wibeLiving" value="private" onchange="lkNext('lkS3')"><span class="lk-radio-label">Renting privately (shared house)</span></label>
+              <label class="lk-radio"><input type="radio" name="wibeLiving" value="home" onchange="lkNext('lkS3')"><span class="lk-radio-label">Living with parents or family</span></label>
+            </div>
+          </div>
+
+          <!-- Q3: Year -->
+          <div class="lk-section" id="lkS3">
+            <p class="lk-section-title">When will you start your course?</p>
+            <span class="wibe-year-hint">We use this to apply the correct loan rates. Loan rates are updated each February. If you are not sure yet, we’ll use the current year’s rates.</span>
+            <div class="lk-radios" role="radiogroup">
+              <label class="lk-radio"><input type="radio" name="wibeYear" value="2526" onchange="lkNext('lkS4')"><span class="lk-radio-label">Not sure yet — use current rates</span></label>
+              <label class="lk-radio"><input type="radio" name="wibeYear" value="2526" onchange="lkNext('lkS4')"><span class="lk-radio-label">2025 to 2026</span></label>
+              <label class="lk-radio"><input type="radio" name="wibeYear" value="2627" onchange="lkNext('lkS4')"><span class="lk-radio-label">2026 to 2027</span></label>
+            </div>
+          </div>
+
+          <!-- Q4: Status -->
+          <div class="lk-section" id="lkS4">
+            <p class="lk-section-title">Which option applies to you?</p>
+            <span class="wibe-year-hint" id="wibeStatusHint">This tells us whose income is used to work out your maintenance loan. For most students under 25, the loan is based on their parents’ income. If one of the other options applies, it is based on your own income.</span>
+
+            <div class="lk-radios" role="radiogroup">
+              <label class="lk-radio"><input type="radio" name="wibeStatus" value="dependent" onchange="lkNext('lkS5'); wibeAboutUpdate()"><span class="lk-radio-label">I am under 25 and not married</span></label>
+              <label class="lk-radio"><input type="radio" name="wibeStatus" value="independent" onchange="lkNext('lkS5'); wibeAboutUpdate()"><span class="lk-radio-label">I am 25 or over</span></label>
+              <label class="lk-radio"><input type="radio" name="wibeStatus" value="independent" onchange="lkNext('lkS5'); wibeAboutUpdate()"><span class="lk-radio-label">I am married or in a civil partnership</span></label>
+              <label class="lk-radio"><input type="radio" name="wibeStatus" value="independent" onchange="lkNext('lkS5'); wibeAboutUpdate()"><span class="lk-radio-label">I have a child under 18 in my care</span></label>
+              <label class="lk-radio"><input type="radio" name="wibeStatus" value="independent" onchange="lkNext('lkS5'); wibeAboutUpdate()"><span class="lk-radio-label">I have supported myself for 3 or more years</span></label>
+            </div>
+            <div class="wibe-independent-note" id="wibeIndependentNote">You are likely to be an <strong>independent student</strong> — your loan will be based on your own income, not your parents'.</div>
+          </div>
+
+          <!-- Q5: Income -->
+          <div class="lk-section" id="lkS5">
+            <p class="lk-section-title" id="wibeIncomeLabel">Last year's household income</p>
+            <p style="font-size:14px;color:#505a5f;margin-bottom:10px;" id="wibeIncomeHint">This is the total income of the people you live with — usually your parents or partner.</p>
+            <div class="lk-radios" role="radiogroup">
+              <label class="lk-radio"><input type="radio" name="wibeIncome" value="mid" onchange="lkNext('lkS6')"><span class="lk-radio-label">Not sure — use an average</span></label>
+              <label class="lk-radio"><input type="radio" name="wibeIncome" value="low" onchange="lkNext('lkS6')"><span class="lk-radio-label">Under £25,000 a year</span></label>
+              <label class="lk-radio"><input type="radio" name="wibeIncome" value="mid" onchange="lkNext('lkS6')"><span class="lk-radio-label">£25,000 to £42,000 a year</span></label>
+              <label class="lk-radio"><input type="radio" name="wibeIncome" value="high" onchange="lkNext('lkS6')"><span class="lk-radio-label">£42,000 to £62,000 a year</span></label>
+              <label class="lk-radio"><input type="radio" name="wibeIncome" value="top" onchange="lkNext('lkS6')"><span class="lk-radio-label">Over £62,000 a year</span></label>
+            </div>
+          </div>
+
+          <!-- Q6: Work -->
+          <div class="lk-section" id="lkS6">
+            <p class="lk-section-title">Money from paid work each month</p>
+            <p style="font-size:14px;color:#505a5f;margin-bottom:10px;">Enter £0 if you do not plan to work during term time.</p>
+            <div style="display:flex;align-items:center;margin-bottom:10px;">
+              <span style="background:#f3f2f1;border:2px solid #0b0c0c;border-right:none;padding:10px 12px;font-size:16px;font-weight:700;" aria-hidden="true">£</span>
+              <input type="number" style="padding:10px 12px;font-size:16px;border:2px solid #0b0c0c;width:120px;" id="wibeWork" value="0" min="0" max="9999" aria-label="Monthly income from paid work">
+            </div>
+          </div>
+
+          <!-- Result panel -->
+          <div class="lk-result" id="lkResult">
+            <div class="lk-result-amounts">
+              <div class="lk-result-col">
+                <span class="lk-result-alabel">Estimated maintenance loan</span>
+                <span class="lk-result-aval green" id="wibeLoanAmt">£911</span>
+                <span class="lk-result-aunit">per month</span>
+                <div class="wibe-work-line" id="wibeWorkRow" style="margin-top:8px;">
+                  <span class="lk-result-alabel">+ paid work</span>
+                  <span class="lk-result-aval green" id="wibeWorkAmt">£0</span>
+                  <span class="lk-result-aunit">per month</span>
                 </div>
               </div>
-              <div class="wibe-chapter-col">
-                <span class="wibe-chapter-amt-label">Estimated living costs</span>
-                <span class="wibe-chapter-amt-val" id="wibeCostTotal">£920</span>
-                <span class="wibe-chapter-amt-unit">per month</span>
+              <div class="lk-result-col">
+                <span class="lk-result-alabel">Estimated living costs</span>
+                <span class="lk-result-aval" id="wibeCostTotal">£920</span>
+                <span class="lk-result-aunit">per month</span>
+              </div>
+            </div>
+            <hr class="lk-result-divider">
+            <span class="lk-result-label" id="wibeResultLabel">Your estimate shows a gap of</span>
+            <span class="lk-result-val" id="wibeResultVal">£9</span>
+            <span class="lk-result-unit">a month</span>
+                      
+            <button class="lk-wtm-trigger" id="lkWtmTrigger" type="button" aria-expanded="false" aria-controls="lkWtmBody">See what this means +</button>
+            </a>
+        </div>
+            
+            <div class="lk-wtm-body" id="lkWtmBody">
+              <h3 class="gov-uk-heading-s">Gaps this size are common</h3>   
+            <p id="lkWtmText">When you are new to managing your own money, this usually means there is very little spare money to deal with higher bills, travel, or costs you did not expect.</p>
+            <p>Some costs vary month to month, and others only come up a few times a year. This estimate does not include one-off or unexpected costs, such as deposits, travel home, or higher bills in winter. Having a buffer can help with this.</p>
+            <p>Private rentals usually require a deposit (often 5 weeks' rent) upfront. Factor this into your planning before you commit.</p>
+            <p>Use this estimate to help you plan how you would manage your costs, and to have conversations with family, partners or advisers about what support or changes might be needed.</p>
+          </div>
+
+          <!-- Editable costs -->
+          <div class="lk-costs-wrap" id="lkCostsWrap">
+            <div class="lk-costs-head">Adjust any figure to match your plans &#9998;</div>
+            <div class="wibe-zone-costs" style="margin:0;">
+              <div role="group" aria-label="Monthly cost breakdown">
+                <div class="wibe-cost-row">
+                  <label class="wibe-cost-label" for="wibeAccom">Accommodation<span class="wibe-cost-note" id="wibeAccomNote">Typical halls rent</span></label>
+                  <div class="wibe-input-wrap"><span class="wibe-prefix" aria-hidden="true">£</span><input type="number" class="wibe-input" id="wibeAccom" value="600" min="0" max="9999"></div>
+                </div>
+                <div class="wibe-cost-row">
+                  <label class="wibe-cost-label" for="wibeFood">Food and groceries</label>
+                  <div class="wibe-input-wrap"><span class="wibe-prefix" aria-hidden="true">£</span><input type="number" class="wibe-input" id="wibeFood" value="185" min="0" max="9999"></div>
+                </div>
+                <div class="wibe-cost-row">
+                  <label class="wibe-cost-label" for="wibeTransport">Transport</label>
+                  <div class="wibe-input-wrap"><span class="wibe-prefix" aria-hidden="true">£</span><input type="number" class="wibe-input" id="wibeTransport" value="45" min="0" max="9999"></div>
+                </div>
+                <div class="wibe-cost-row">
+                  <label class="wibe-cost-label" for="wibeBills">Other monthly bills<span class="wibe-cost-note">Phone, subscriptions, etc.</span></label>
+                  <div class="wibe-input-wrap"><span class="wibe-prefix" aria-hidden="true">£</span><input type="number" class="wibe-input" id="wibeBills" value="70" min="0" max="9999"></div>
+                </div>
+                <div class="wibe-cost-row">
+                  <label class="wibe-cost-label" for="wibeSocial">Social and lifestyle</label>
+                  <div class="wibe-input-wrap"><span class="wibe-prefix" aria-hidden="true">£</span><input type="number" class="wibe-input" id="wibeSocial" value="40" min="0" max="9999"></div>
+                </div>
+                <div class="wibe-cost-row">
+                  <label class="wibe-cost-label" for="wibeCourse">Course materials<span class="wibe-cost-note">Averaged over the term</span></label>
+                  <div class="wibe-input-wrap"><span class="wibe-prefix" aria-hidden="true">£</span><input type="number" class="wibe-input" id="wibeCourse" value="35" min="0" max="9999"></div>
+                </div>
+              </div>
+              <div class="wibe-total-row">
+                <span class="wibe-total-label">Total monthly costs</span>
+                <span class="wibe-total-value" id="wibeTotalDisplay" aria-live="polite">£920/mo</span>
               </div>
             </div>
           </div>
 
-          <!-- Zone 3: editable costs on white -->
-          <div class="wibe-zone-costs">
-            <div class="wibe-costs-head">Adjust any figure to match your plans &#9998;</div>
-            <div role="group" aria-label="Monthly cost breakdown">
-              <div class="wibe-cost-row">
-                <label class="wibe-cost-label" for="wibeAccom">
-                  Accommodation
-                  <span class="wibe-cost-note" id="wibeAccomNote">Typical halls rent outside London</span>
-                </label>
-                <div class="wibe-input-wrap">
-                  <span class="wibe-prefix" aria-hidden="true">£</span>
-                  <input type="number" class="wibe-input" id="wibeAccom" value="600" min="0" max="9999" aria-label="Accommodation cost per month in pounds">
-                </div>
-              </div>
-              <div class="wibe-cost-row">
-                <label class="wibe-cost-label" for="wibeFood">Food and groceries</label>
-                <div class="wibe-input-wrap">
-                  <span class="wibe-prefix" aria-hidden="true">£</span>
-                  <input type="number" class="wibe-input" id="wibeFood" value="185" min="0" max="9999" aria-label="Food and groceries per month in pounds">
-                </div>
-              </div>
-              <div class="wibe-cost-row">
-                <label class="wibe-cost-label" for="wibeTransport">Transport</label>
-                <div class="wibe-input-wrap">
-                  <span class="wibe-prefix" aria-hidden="true">£</span>
-                  <input type="number" class="wibe-input" id="wibeTransport" value="45" min="0" max="9999" aria-label="Transport per month in pounds">
-                </div>
-              </div>
-              <div class="wibe-cost-row">
-                <label class="wibe-cost-label" for="wibeBills">
-                  Other monthly bills
-                  <span class="wibe-cost-note">This could include items such as your phone and any subscriptions</span>
-                </label>
-                <div class="wibe-input-wrap">
-                  <span class="wibe-prefix" aria-hidden="true">£</span>
-                  <input type="number" class="wibe-input" id="wibeBills" value="70" min="0" max="9999" aria-label="Other monthly bills in pounds">
-                </div>
-              </div>
-              <div class="wibe-cost-row">
-                <label class="wibe-cost-label" for="wibeSocial">
-                  Social and lifestyle
-                </label>
-                <div class="wibe-input-wrap">
-                  <span class="wibe-prefix" aria-hidden="true">£</span>
-                  <input type="number" class="wibe-input" id="wibeSocial" value="40" min="0" max="9999" aria-label="Social and lifestyle costs per month in pounds">
-                </div>
-              </div>
-              <div class="wibe-cost-row">
-                <label class="wibe-cost-label" for="wibeCourse">
-                  Course materials
-                  <span class="wibe-cost-note">Averaged over the term</span>
-                </label>
-                <div class="wibe-input-wrap">
-                  <span class="wibe-prefix" aria-hidden="true">£</span>
-                  <input type="number" class="wibe-input" id="wibeCourse" value="35" min="0" max="9999" aria-label="Course materials per month in pounds">
-                </div>
-              </div>
-            </div>
-            <div class="wibe-total-row">
-              <span class="wibe-total-label">Total monthly costs</span>
-              <span class="wibe-total-value" id="wibeTotalDisplay" aria-live="polite" aria-atomic="true">£920</span>
-            </div>
-          </div>
-
-          <!-- Verdict: dark blue band -->
-          <div class="wibe-verdict shortfall" id="wibeVerdict">
-            <div class="wibe-verdict-header">
-              <span class="wibe-verdict-header-label" id="wibeVerdictLabel">Your estimate shows a gap of</span>
-              <p class="wibe-verdict-heading" id="wibeVerdictHeading">£9 a month</p>
-            </div>
-            <div class="wibe-verdict-body-zone" id="wibeVerdictBodyShortfall">
-              <span class="wibe-verdict-subhead">What this means</span>
-              <p class="wibe-verdict-body">Gaps of this size are common, especially in the first year. When you are new to managing your own money, this usually means there is very little spare money to deal with higher bills, travel, or costs you did not expect.</p>
-              <p class="wibe-verdict-body">Some costs vary month to month, and others only come up a few times a year. This estimate does not include one-off or unexpected costs, such as deposits, travel home, or higher bills in winter. Having a buffer can help with this.</p>
-              <p class=wibe-verdict-body">Private rentals usually require a deposit (often 5 weeks' rent) upfront. Factor this into your planning before you commit.</p> 
-              <p class="wibe-verdict-body">Use this estimate to help you plan how you would manage your costs, and to have conversations with family, partners or advisers about what support or changes might be needed.</p>
-              <p class="wibe-disclaimer">Loan figures are estimates. Your actual amount depends on your household income assessment and the rates for your academic year.</p>
-            </div>
-            <div class="wibe-verdict-body-zone" id="wibeVerdictBodySurplus" style="display:none;">
-              <span class="wibe-verdict-subhead">What this means</span>
-              <p class="wibe-verdict-body">Your loan looks likely to cover your estimated costs. It is still worth keeping a small buffer for one-off or unexpected costs, such as deposits, travel home, or higher bills in winter.</p>
-              <p class=wibe-verdict-body">Private rentals usually require a deposit (often 5 weeks' rent) upfront. Factor this into your planning before you commit.</p>
-              <p class="wibe-disclaimer">Loan figures are estimates. Your actual amount depends on your household income assessment and the rates for your academic year.</p>
-            </div>
+          <!-- Hidden compat -->
+          <div style="display:none" id="wibeVerdict" class="wibe-verdict shortfall">
+            <div id="wibeVerdictBodyShortfall"></div>
+            <div id="wibeVerdictBodySurplus" style="display:none;"></div>
+            <div class="wibe-verdict-header"><span id="wibeVerdictLabel"></span><p id="wibeVerdictHeading"></p></div>
           </div>
 
           <div class="page-nav"></div>
         </div>
+
 
         <div class="step-page" id="step-what-support-is-available" data-step-title="What support is available">
           <h2 class="govuk-heading-m" id="what-support-is-available">What support is available</h2>
@@ -1471,11 +1493,17 @@ body.desktop-mode .phone-btn{
     // ===== CHECK IF YOU CAN AFFORD TO STUDY =====
     (function() {
       var situations = {
-        'halls-out': { loanBand:'out', accom:600, food:185, transport:45, social:40, note:'Typical halls rent outside London' },
-        'halls-lon': { loanBand:'lon', accom:1050, food:220, transport:120, social:80, note:'Typical halls rent in London' },
-        'private-out': { loanBand:'out', accom:520, food:185, transport:50, social:40, note:'Your share of rent in a shared house, outside London' },
-        'private-lon': { loanBand:'lon', accom:980, food:220, transport:120, social:80, note:'Your share of rent in a shared house, London' },
-        'home': { loanBand:'home', accom:120, food:185, transport:65, social:40, note:'Typical contribution to household costs' }
+        'london-halls': { loanBand:'lon', accom:1050, food:220, transport:120, social:80, note:'Typical halls rent in London' },
+        'london-private': { loanBand:'lon', accom:980, food:220, transport:120, social:80, note:'Rent in a shared house, London' },
+        'southwest-halls': { loanBand:'out', accom:720, food:195, transport:55, social:60, note:'Typical halls rent in the South West' },
+        'southwest-private':{ loanBand:'out', accom:680, food:195, transport:55, social:55, note:'Rent in a shared house, South West' },
+        'midlands-halls': { loanBand:'out', accom:650, food:185, transport:50, social:50, note:'Typical halls rent in the Midlands' },
+        'midlands-private': { loanBand:'out', accom:550, food:185, transport:50, social:45, note:'Rent in a shared house, Midlands' },
+        'northwest-halls': { loanBand:'out', accom:650, food:185, transport:50, social:55, note:'Typical halls rent in the North West' },
+        'northwest-private':{ loanBand:'out', accom:570, food:185, transport:50, social:50, note:'Rent in a shared house, North West' },
+        'yorkshire-halls': { loanBand:'out', accom:580, food:180, transport:45, social:45, note:'Typical halls rent in Yorkshire and the North East' },
+        'yorkshire-private':{ loanBand:'out', accom:500, food:180, transport:45, social:40, note:'Rent in a shared house, Yorkshire and North East' },
+        'home': { loanBand:'home', accom:120, food:185, transport:55, social:40, note:'Typical contribution to household costs' }
       };
 
       // 2025/26 confirmed GOV.UK rates (monthly = annual / 9)
@@ -1507,7 +1535,7 @@ body.desktop-mode .phone-btn{
       }
 
       function getTotal() {
-        var ids = ['wibeAccom','wibeFood','wibeTransport','wibeBills','wibeSocial','wibeCourse'];
+        var ids = ['wibeAccom','wibeFood','wibeTransport','wibePhone','wibeCourse'];
         return ids.reduce(function(s, id) {
           var el = document.getElementById(id);
           return s + (el ? (parseFloat(el.value) || 0) : 0);
@@ -1516,7 +1544,7 @@ body.desktop-mode .phone-btn{
 
       // Work out if user qualifies as independent student
       function checkIndependent() {
-        var status = document.getElementById('wibeStatus') ? document.getElementById('wibeStatus').value : 'dependent';
+        var stEl = document.querySelector('input[name="wibeStatus"]:checked'); var status = stEl ? stEl.value : 'dependent';
         isIndependent = (status === 'independent');
         return isIndependent;
       }
@@ -1563,6 +1591,11 @@ body.desktop-mode .phone-btn{
         if (costTotalEl) costTotalEl.textContent = fmt(total);
         if (totalDisplayEl) totalDisplayEl.textContent = fmt(total) + '/mo';
 
+        // Update result panel
+        var resultLabel = document.getElementById('wibeResultLabel');
+        var resultVal = document.getElementById('wibeResultVal');
+        var wtmText = document.getElementById('lkWtmText');
+
         // Update verdict
         var verdictEl = document.getElementById('wibeVerdict');
         var headingEl = document.getElementById('wibeVerdictHeading');
@@ -1575,45 +1608,58 @@ body.desktop-mode .phone-btn{
           verdictEl.className = 'wibe-verdict shortfall';
           if (labelEl) labelEl.textContent = 'Your estimate shows a gap of';
           if (headingEl) headingEl.textContent = fmt(Math.abs(diff)) + '/month';
+          if (resultLabel) resultLabel.textContent = 'Your estimate shows a gap of';
+          if (resultVal) resultVal.textContent = fmt(Math.abs(diff));
+          if (wtmText) wtmText.textContent = 'When you are new to managing your own money, this usually means there is very little spare money to deal with higher bills, travel, or costs you did not expect.';
           if (shortfallBody) shortfallBody.style.display = '';
           if (surplusBody) surplusBody.style.display = 'none';
         } else if (diff === 0) {
           verdictEl.className = 'wibe-verdict surplus';
           if (labelEl) labelEl.textContent = 'Breaking even';
           if (headingEl) headingEl.textContent = '—';
+          if (resultLabel) resultLabel.textContent = diff === 0 ? 'Breaking even' : 'Your estimate shows a surplus of';
+          if (resultVal) resultVal.textContent = diff === 0 ? '—' : fmt(diff);
+          if (wtmText) wtmText.textContent = 'Your loan looks likely to cover your estimated costs. Keep a buffer for unexpected costs like deposits, travel home, or higher bills in winter.';
           if (shortfallBody) shortfallBody.style.display = 'none';
           if (surplusBody) surplusBody.style.display = '';
         } else {
           verdictEl.className = 'wibe-verdict surplus';
           if (labelEl) labelEl.textContent = 'Your estimate shows a surplus of';
           if (headingEl) headingEl.textContent = fmt(diff) + '/month';
+          if (resultLabel) resultLabel.textContent = diff === 0 ? 'Breaking even' : 'Your estimate shows a surplus of';
+          if (resultVal) resultVal.textContent = diff === 0 ? '—' : fmt(diff);
+          if (wtmText) wtmText.textContent = 'Your loan looks likely to cover your estimated costs. Keep a buffer for unexpected costs like deposits, travel home, or higher bills in winter.';
           if (shortfallBody) shortfallBody.style.display = 'none';
           if (surplusBody) surplusBody.style.display = '';
         }
       }
 
       function update() {
-        var sitKey = document.getElementById('wibeSituation') ? document.getElementById('wibeSituation').value : 'halls-out';
-        var yearEl = document.getElementById('wibeYear');
-        yearKey = yearEl ? yearEl.value : '2526';
-        var incomeEl = document.getElementById('wibeIncome');
-        var income = incomeEl ? incomeEl.value : 'mid';
+        var regEl = document.querySelector('input[name="wibeRegion"]:checked');
+        var livEl = document.querySelector('input[name="wibeLiving"]:checked');
+        var yrEl = document.querySelector('input[name="wibeYear"]:checked');
+        var incEl = document.querySelector('input[name="wibeIncome"]:checked');
+        var region = regEl ? regEl.value : 'northwest';
+        var living = livEl ? livEl.value : 'halls';
+        var sitKey = living === 'home' ? 'home' : region + '-' + living;
+        yearKey = yrEl ? yrEl.value : '2526';
+        var income = incEl ? incEl.value : 'mid';
         if (!income) income = 'mid';
 
-        var sit = situations[sitKey] || situations['halls-out'];
+        var sit = situations[sitKey] || situations['northwest-halls'];
         var yearRates = loanRates[yearKey] || loanRates['2526'];
         currentLoan = yearRates[sit.loanBand][income];
 
         var accomEl = document.getElementById('wibeAccom');
         var foodEl = document.getElementById('wibeFood');
-        var transportEl = document.getElementById('wibeTransport');
+        var transportEl= document.getElementById('wibeTransport');
         var socialEl = document.getElementById('wibeSocial');
         var noteEl = document.getElementById('wibeAccomNote');
         if (accomEl) accomEl.value = sit.accom;
         if (foodEl) foodEl.value = sit.food;
         if (transportEl) transportEl.value = sit.transport;
         if (socialEl) socialEl.value = sit.social;
-        if (noteEl) noteEl.textContent = sit.note;
+        if (noteEl) noteEl.textContent= sit.note;
 
         calc();
       }
@@ -1624,23 +1670,85 @@ body.desktop-mode .phone-btn{
       }
 
       // Wire up selects
-      ['wibeSituation','wibeYear','wibeIncome'].forEach(function(id) {
-        var el = document.getElementById(id);
-        if (el) el.addEventListener('change', update);
-      });
+      // radio inputs handle their own onchange via lkNext
 
       // Status select triggers independent check + update
       var statusEl = document.getElementById('wibeStatus');
       if (statusEl) statusEl.addEventListener('change', wibeAboutUpdate);
 
       // Wire up number inputs
-      ['wibeAccom','wibeFood','wibeTransport','wibeBills','wibeSocial','wibeCourse','wibeWork'].forEach(function(id) {
+      ['wibeAccom','wibeFood','wibeTransport','wibePhone','wibeCourse','wibeWork'].forEach(function(id) {
         var el = document.getElementById(id);
         if (el) {
           el.addEventListener('input', debouncedCalc);
           el.addEventListener('change', calc);
         }
       });
+
+
+
+  // ===== Progressive reveal =====
+  window.lkNext = function (sectionId) {
+
+    document.querySelectorAll('.lk-radio').forEach(function (lbl) {
+      var input = lbl.querySelector('input[type="radio"]');
+      if (input) {
+        lbl.classList.toggle('selected', input.checked);
+      }
+    });
+
+    var next = document.getElementById(sectionId);
+    if (next && !next.classList.contains('show')) {
+      next.classList.add('show');
+      setTimeout(function () {
+        next.scrollIntoView({
+          behavior: 'smooth',
+          block: 'nearest'
+        });
+      }, 80);
+    }
+
+    var region = document.querySelector('input[name="wibeRegion"]:checked');
+    var living = document.querySelector('input[name="wibeLiving"]:checked');
+
+    if (region && living) {
+      var result = document.getElementById('lkResult');
+      var costs = document.getElementById('lkCostsWrap');
+      var wtm = document.getElementById('lkWtmTrigger');
+
+      if (result) result.classList.add('show');
+      if (costs) costs.style.display = 'block';
+      if (wtm) wtm.classList.add('show');
+    }
+
+    // Recalculate every time any radio changes
+    if (typeof update === 'function') update();
+  };
+
+
+  // ===== What this means accordion =====
+  (function () {
+    var trigger = document.getElementById('lkWtmTrigger');
+    var body = document.getElementById('lkWtmBody');
+
+    if (!trigger || !body) return;
+
+    trigger.addEventListener('click', function () {
+      var open = body.classList.toggle('open');
+      trigger.classList.toggle('open', open);
+      trigger.setAttribute('aria-expanded', String(open));
+    });
+  })();
+
+
+      // Wire work input
+      (function(){
+        var w = document.getElementById('wibeWork');
+        if (w) {
+          w.addEventListener('input', function(){ clearTimeout(debounce); debounce = setTimeout(calc, 400); });
+          w.addEventListener('change', calc);
+        }
+      })();
 
       // Expose wibeAboutUpdate globally for onchange handlers
       window.wibeAboutUpdate = wibeAboutUpdate;
